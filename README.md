@@ -29,3 +29,14 @@ The ants farm describes in input file like below:
 6-5      -</pre></code>
 
 ### usage: ./lem-in < file.map
+
+Output should be something like this: 
+<pre><code>L1-2
+L1-3 L2-2
+L1-1 L2-3 L3-2
+L2-1 L3-3
+L3-1</pre></code>
+
+Where each line is one time step.  
+L1-3 means: 'ant number 1 goes to the room number 3'.  
+Only one ant can be at the room in the same time. 
