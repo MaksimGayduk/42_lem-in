@@ -38,5 +38,5 @@ L2-1 L3-3
 L3-1</pre></code>
 
 Where each line is one time step.  
-L1-3 means: 'ant number 1 goes to the room number 3'.  
+L1-3 means: <code>ant number 1 goes to the room number 3</code>.  
 Only one ant can be at the room in the same time. 

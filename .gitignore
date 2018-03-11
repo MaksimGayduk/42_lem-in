@@ -1,0 +1,15 @@
+#temp files
+*~
+*#*#
+
+#hidden files
+.*
+!.gitignore
+
+#object files
+*.o
+
+libft.a
+lem-in
+cleartrash
+
