@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 16:41:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/13 19:11:50 by mgayduk          ###   ########.fr       */
+/*   Created: 2018/03/13 16:28:21 by mgayduk           #+#    #+#             */
+/*   Updated: 2018/03/13 17:28:39 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strequ(char const *s1, char const *s2)
+#include "lem_in.h"
+
+int	main(void)
 {
-	if (!s1 || !s2)
-		return (0);
-	while (*s1 || *s2)
-	{
-		if (*s1 != *s2)
-			return (0);
-		s1++;
-		s2++;
-	}
-	return (1);
+	t_data	data;
+
+	data = read_data();
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 11:03:18 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/01/19 13:37:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/13 18:40:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char				*ft_strsub(char const *s1, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char	const *s, char c);
+size_t				ft_word_count(char const *s, char c);
 void				ft_strrev(char *str);
 
 void				ft_clear_strarr(char ***str_arr);

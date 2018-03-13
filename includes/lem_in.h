@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/01 16:41:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/13 19:11:50 by mgayduk          ###   ########.fr       */
+/*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
+/*   Updated: 2018/03/13 19:21:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strequ(char const *s1, char const *s2)
+#ifndef LEM_IN_H
+# define LEM_IN_H
+
+#include "libft.h"
+#include <stdlib.h>
+
+typedef struct	s_data
 {
-	if (!s1 || !s2)
-		return (0);
-	while (*s1 || *s2)
-	{
-		if (*s1 != *s2)
-			return (0);
-		s1++;
-		s2++;
-	}
-	return (1);
-}
+	int			lem_num;
+	t_list		*rooms;
+	int			**adj;
+}				t_data;
+
+typedef struct	s_room
+{
+	char		*name;
+	int			x;
+	int			y;
+}				t_room;
+
+t_data			read_data(void);
+int				is_comment(char *line);
+int				is_instruct(char *line);
+int				is_room(char *line);
+int				is_link(char *line);
+
+#endif
