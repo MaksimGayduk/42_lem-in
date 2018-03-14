@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 13:09:02 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/14 16:06:35 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 #include "libft.h"
+#include "matrix.h"
 #include <stdlib.h>
 #include <inttypes.h>
 
@@ -27,7 +28,7 @@ typedef struct	s_data
 {
 	int			lem_num;
 	t_list		*rooms;
-	int			**adj;
+	t_matrix	adj;
 }				t_data;
 
 /*
@@ -54,8 +55,9 @@ t_data			read_data(void);
 int				is_comment(char *line);
 int				is_instruct(char *line);
 int				is_room(char *line);
-int				is_link(char *line);
+int				is_link(t_list *rooms, char *line);
 void 			parse_room(t_data *data, char *line, char status);
+void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
 
 #endif

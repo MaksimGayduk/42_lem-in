@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 12:58:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/14 16:05:07 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,18 @@ int is_room(char *line)
 	return (1);
 }
 
-int	is_link(char *line)
+int	in_list(t_list *rooms, char *name)
+{
+	while (rooms)
+	{
+		if (ft_strequ(((t_room *)rooms->content)->name, name))
+			return (1);
+		rooms = rooms->next;
+	}
+	return (0);
+}
+
+int	is_link(t_list *rooms, char *line)
 {
 	char	**arr;
 	int		i;
@@ -73,11 +84,11 @@ int	is_link(char *line)
 	arr = ft_strsplit(line, '-');
 	i = 0;
 	count = 0;
-	while (arr[i])
-		if (ft_is_number(arr[i++]))
-			count++;
-	ft_clear_strarr(&arr);
-	if (count == 2)
+	if (in_list(rooms, arr[0]) && in_list(rooms, arr[1]))
+	{
+		ft_clear_strarr(&arr);
 		return (1);
+	}
+	ft_clear_strarr(&arr);
 	return (0);
 }
