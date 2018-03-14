@@ -6,7 +6,7 @@
 #    By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 08:37:35 by mgayduk           #+#    #+#              #
-#    Updated: 2018/03/13 18:57:19 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/03/14 10:01:41 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ LFT_DIR := ./libft
 # Source files
 SRC :=	lem-in.c			\
 		reader.c			\
-		reader_checks.c
+		reader_checks.c		\
+		reader_exec.c 		\
+		helpers.c
 		
 		
 # Object files

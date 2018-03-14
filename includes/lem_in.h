@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/13 19:21:36 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/14 13:09:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 #include "libft.h"
 #include <stdlib.h>
+#include <inttypes.h>
+
+# include <fcntl.h>
+# include <sys/uio.h>
+# include <unistd.h>
+
+# define FD 3
 
 typedef struct	s_data
 {
@@ -23,17 +30,32 @@ typedef struct	s_data
 	int			**adj;
 }				t_data;
 
+/*
+** Status description:
+** c - common room
+** s - start room
+** e - end room
+*/
+
 typedef struct	s_room
 {
 	char		*name;
 	int			x;
 	int			y;
+	char		status;
+	int			index;
 }				t_room;
+
+void			error(void);
+void			print_rooms(t_list *rooms);
+void			delete_room(void *room, size_t content_size);
 
 t_data			read_data(void);
 int				is_comment(char *line);
 int				is_instruct(char *line);
 int				is_room(char *line);
 int				is_link(char *line);
+void 			parse_room(t_data *data, char *line, char status);
+void			exec_instr(t_data *data, char *line);
 
 #endif

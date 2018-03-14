@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:28:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/13 17:28:39 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/14 12:59:49 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,8 @@ int	main(void)
 	t_data	data;
 
 	data = read_data();
+	ft_lstdel(&(data.rooms), &delete_room);
+	// while (1)
+	// 	;	
 	return (0);
 }
