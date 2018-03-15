@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 16:05:07 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/15 11:42:56 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	is_comment(char *line)
 {
 	int len;
 	
-	//ft_printf("COMMENT CHECK\n");
 	if (ft_word_count(line, ' ') > 1)
 		return (0);
 	len = ft_strlen(line);
@@ -27,12 +26,10 @@ int	is_comment(char *line)
 
 int	is_instruct(char *line)
 {
-	//ft_printf("INSTR CHECK FOR %s\n", line);
 	if (ft_strequ(line, "##start"))
 		return (1);
 	else if (ft_strequ(line, "##end"))
 		return (1);
-	//ft_printf("INSTR CHECK END\n");
 	return (0);
 }
 
@@ -42,7 +39,6 @@ int is_room(char *line)
 	intmax_t x;
 	intmax_t y;
 
-	//ft_printf("ROOM CHECK\n");
 	if (ft_word_count(line, ' ') != 3)
 		return (0);
 	arr = ft_strsplit(line, ' ');
@@ -62,7 +58,7 @@ int is_room(char *line)
 	return (1);
 }
 
-int	in_list(t_list *rooms, char *name)
+int	in_list_by_name(t_list *rooms, char *name)
 {
 	while (rooms)
 	{
@@ -77,14 +73,13 @@ int	is_link(t_list *rooms, char *line)
 {
 	char	**arr;
 	int		i;
-	int		count;
 
 	if (ft_word_count(line, '-') != 2)
 		return (0);
 	arr = ft_strsplit(line, '-');
 	i = 0;
-	count = 0;
-	if (in_list(rooms, arr[0]) && in_list(rooms, arr[1]))
+	if (in_list_by_name(rooms, arr[0]) &&
+		in_list_by_name(rooms, arr[1]))
 	{
 		ft_clear_strarr(&arr);
 		return (1);

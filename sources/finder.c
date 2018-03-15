@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/13 16:28:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 12:04:19 by mgayduk          ###   ########.fr       */
+/*   Created: 2018/03/15 11:45:54 by mgayduk           #+#    #+#             */
+/*   Updated: 2018/03/15 12:02:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	main(void)
+void	add_to_queue(t_list **queue, t_data data, int node)
 {
-	t_data	data;
+	
+}
 
-	data = read_data();
-	//find_path(data);
-	free_matrix(data.adj);
-	ft_lstdel(&(data.rooms), &delete_room);
+void	find_path(t_data data)
+{
+	t_list	*queue;
+	int		node;
 
-	// while (1)
-	// 	;	
-	return (0);
+	node = get_index_by_status(data.rooms, 's');
+	set_visited(data.rooms, node);
+	add_to_queue(&queue, data, node);
 }

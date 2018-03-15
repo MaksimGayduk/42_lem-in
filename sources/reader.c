@@ -6,20 +6,11 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 16:49:39 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/15 09:15:28 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int f;
-
-static void	init_data(t_data *data)
-{
-	data->lem_num = 0;
-	data->rooms = NULL;
-	//data->adj = NULL;
-}
 
 static void	read_lem_num(t_data *data)
 {
@@ -96,41 +87,17 @@ t_data	read_data(void)
 {
 	char 	*temp;
 	t_data	data;
-	f = open("./test", O_RDONLY);
 
-	init_data(&data);
+	open("./test", O_RDONLY);
+
+	data.lem_num = 0;
+	data.rooms = NULL;
 	read_lem_num(&data);
 	temp = read_rooms(&data);
 	build_adj_matrix(&data, temp);
+	check_status(data.rooms);
 	print_rooms(data.rooms);
 
-	// //while (get_next_line(0, &line) > 0)
-	// //{
-	// 	ft_printf("%s\n", line);
-		
-	// 	if (is_comment(line))
-	// 		i--;
-	// 	else if (i == 0 && ft_is_number(line))
-	// 		data.lem_num = ft_atoi(line);
-	// 	else if (is_instruct(line))
-	// 	{
-	// 		ft_printf("%s is instruction\n");
-	// 		//exec_instruct(&data, line);
-	// 	}
-	// 	else if (is_room(line))
-	// 	{
-	// 		ft_printf("%s is room\n", line);
-	// 		//parse_room(&data, line)
-	// 	}
-	// 	else if (is_link(line))
-	// 	{
-	// 		ft_printf("%s is link\n", line);
-	// 	//	parse_link(&data, line);
-	// 	}
-		
-	// 	ft_strdel(&line);
-	// 	i++;
-	// //}
 	ft_printf("%i\n", data.lem_num);
 	return (data);
 }

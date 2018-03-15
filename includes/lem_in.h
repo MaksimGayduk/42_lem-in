@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 16:06:35 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/15 11:51:18 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct	s_data
 ** s - start room
 ** e - end room
 */
-
 typedef struct	s_room
 {
 	char		*name;
@@ -45,6 +44,8 @@ typedef struct	s_room
 	int			y;
 	char		status;
 	int			index;
+	int			visited;
+	int			wave;
 }				t_room;
 
 void			error(void);
@@ -59,5 +60,12 @@ int				is_link(t_list *rooms, char *line);
 void 			parse_room(t_data *data, char *line, char status);
 void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
+void			check_status(t_list *rooms);
+
+/*
+** room functions
+*/
+int				get_index_by_name(t_list *rooms, char *name);
+int				int		get_index_by_status(t_list *rooms, char status);
 
 #endif
