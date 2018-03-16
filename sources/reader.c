@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 09:15:28 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/15 14:43:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,25 @@ static void build_adj_matrix(t_data *data, char *temp)
 	print_matrix(data->adj);
 }
 
+static void	write_rooms_to_arr(t_data *data)
+{
+	int		index;
+	t_list	*temp;
+	size_t	len;
+
+	len = ft_lstlen(data->rooms);
+	data->room_num = len;
+	data->room_arr = (t_room *)malloc(sizeof(t_room) * len);
+	temp = data->rooms;
+	while (temp)
+	{
+		index = ((t_room *)temp->content)->index;
+		ft_memcpy(&(data->room_arr[index]), (t_room *)temp->content, sizeof(t_room));
+		data->room_arr[index].name = ft_strdup(((t_room *)temp->content)->name);
+		temp = temp->next;
+	}
+}
+
 t_data	read_data(void)
 {
 	char 	*temp;
@@ -94,9 +113,11 @@ t_data	read_data(void)
 	data.rooms = NULL;
 	read_lem_num(&data);
 	temp = read_rooms(&data);
-	build_adj_matrix(&data, temp);
 	check_status(data.rooms);
-	print_rooms(data.rooms);
+	build_adj_matrix(&data, temp);
+	write_rooms_to_arr(&data);
+	print_room_arr(data.room_arr, data.room_num);
+	//print_rooms(data.rooms);
 
 	ft_printf("%i\n", data.lem_num);
 	return (data);

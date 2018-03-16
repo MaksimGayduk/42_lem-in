@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 11:51:18 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/16 15:01:45 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@
 # include <unistd.h>
 
 # define FD 3
-
-typedef struct	s_data
-{
-	int			lem_num;
-	t_list		*rooms;
-	t_matrix	adj;
-}				t_data;
 
 /*
 ** Status description:
@@ -48,8 +41,19 @@ typedef struct	s_room
 	int			wave;
 }				t_room;
 
+typedef struct	s_data
+{
+	int			lem_num;
+	int			room_num;
+	t_list		*rooms;
+	t_room		*room_arr;
+	t_matrix	adj;
+}				t_data;
+
 void			error(void);
 void			print_rooms(t_list *rooms);
+void			print_room_arr(t_room *room_arr, int room_num);
+void			print_int(t_list *room);
 void			delete_room(void *room, size_t content_size);
 
 t_data			read_data(void);
@@ -62,10 +66,14 @@ void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
 void			check_status(t_list *rooms);
 
+void			find_path(t_data data);
+int				in_queue(t_list *queue, int index);
+void			add_to_queue(t_list **queue, t_data *data, int index);
+
 /*
 ** room functions
 */
 int				get_index_by_name(t_list *rooms, char *name);
-int				int		get_index_by_status(t_list *rooms, char status);
+int				get_index_by_status(t_room *room_arr, int room_num, char status);
 
 #endif

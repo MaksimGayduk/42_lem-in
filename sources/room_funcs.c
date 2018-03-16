@@ -6,11 +6,11 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:47:47 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 12:01:43 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/15 13:12:01 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 int		get_index_by_name(t_list *rooms, char *name)
 {
@@ -23,13 +23,16 @@ int		get_index_by_name(t_list *rooms, char *name)
 	return (-1);
 }
 
-int		get_index_by_status(t_list *rooms, char status)
+int		get_index_by_status(t_room *room_arr, int room_num, char status)
 {
-	while (rooms)
+	int i;
+
+	i = 0;
+	while (i < room_num)
 	{
-		if (((t_room *)rooms->content)->status == status)
-			return (((t_room *)rooms->content)->index);
-		rooms = rooms->next;
+		if (room_arr[i].status == status)
+			return (room_arr[i].index);
+		i++;
 	}
 	return (-1);
 }
