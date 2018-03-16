@@ -6,7 +6,7 @@
 /*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/16 15:01:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/16 18:18:45 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 
 # define FD 3
+# define EMPTY -42
 
 /*
 ** Status description:
@@ -56,6 +57,9 @@ void			print_room_arr(t_room *room_arr, int room_num);
 void			print_int(t_list *room);
 void			delete_room(void *room, size_t content_size);
 
+/*
+** Functions for reading data
+*/
 t_data			read_data(void);
 int				is_comment(char *line);
 int				is_instruct(char *line);
@@ -66,9 +70,13 @@ void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
 void			check_status(t_list *rooms);
 
-void			find_path(t_data data);
+/*
+** Executable algorithm functions
+*/
+void			wave_front(t_data *data);
 int				in_queue(t_list *queue, int index);
 void			add_to_queue(t_list **queue, t_data *data, int index);
+void			detect_pathways(t_data *data);
 
 /*
 ** room functions

@@ -6,7 +6,7 @@
 #    By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 08:37:35 by mgayduk           #+#    #+#              #
-#    Updated: 2018/03/16 14:59:21 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/03/16 17:37:27 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC :=	lem-in.c			\
 		room_funcs.c		\
 		wave_front.c		\
 		queue_funcs.c 		\
+		detector.c			\
 		matrix.c 			\
 		helpers.c
 		
