@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 13:38:56 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/17 14:06:09 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,40 @@ void	delete_room(void *room, size_t content_size)
 	ft_strdel(&(((t_room *)room)->name));
 	free(room);
 	content_size = 0;
+}
+
+void	delete_path(void *content, size_t content_size)
+{
+	if (!content)
+		return ;
+	free(content);
+	content_size = 0;
+}
+
+void	delete_pathways(t_list **head)
+{
+	t_list *temp;
+
+	if (!head || !*head)
+		return ;
+	while (*head)
+	{
+		temp = *head;
+		*head = (*head)->next;
+		if (temp->content)
+			ft_lst_erase((t_list *)temp->content);
+		temp->content_size = 0;
+		free(temp);
+	}
+}
+
+void	print_pathways(t_list *pathways)
+{
+	while (pathways)
+	{
+		ft_printf("\n");
+		ft_lstiter((t_list *)(pathways->content), &print_int);
+		ft_printf("\n");
+		pathways = pathways->next;
+	}
 }

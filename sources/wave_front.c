@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wave_front.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:45:54 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/16 17:31:35 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/17 13:06:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,24 @@ void	wave_front(t_data *data)
 
 	queue = NULL;
 	handle_start_vertex(data, &queue);
+	print_room_arr(data->room_arr, data->room_num);
 	wave = 1;
 	while (queue)
 	{
-		wave++;
 		index = *((int *)queue->content);
+		if (data->room_arr[index].wave > wave)
+			wave++;
 		if (data->room_arr[index].status == 'e')
 			printf("the shortest way to the end is %i\n",
 					data->room_arr[index].wave);
 		if (!data->room_arr[index].visited)
 		{
 			add_to_queue(&queue, data, index);
-			mark_wave(*data, queue, wave);
+			mark_wave(*data, queue, wave + 1);
 			data->room_arr[index].visited = 1;
 			ft_lstdel_front(&queue);
 		}
+		print_room_arr(data->room_arr, data->room_num);
 		ft_lstiter(queue, &print_int);
 		ft_printf("\n");
 	}
