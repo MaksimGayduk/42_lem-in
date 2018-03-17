@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:32:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/17 14:07:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/17 14:14:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ void	find_path_to_start(t_data *data, t_list **path, int index)
 		return ;
 	}
 	ft_lstadd(path, ft_lstnew(&vertex, sizeof(vertex)));
-	// ft_printf("\n");
-	// ft_lstiter(*path, &print_int);
-	// ft_printf("\n");
 	find_path_to_start(data, path, vertex);
 
 }
@@ -86,21 +83,13 @@ void	detect_pathways(t_data *data)
 	{
 		path = ft_lstnew(&index, sizeof(index));
 		find_path_to_start(data, &path, index);
-		ft_printf("\npath length %u\n", ft_lstlen(path));
-		// ft_printf("\n");
-		// ft_lstiter(path, &print_int);
-		// ft_printf("\n");
+		possible_ways--;
 		if (!path)
-		{
-			possible_ways--;
 			continue ;
-		}
 		if (!(data->pathways))
 		{
 			data->pathways = ft_lstnew(NULL, 0);
 			data->pathways->content = path;
-			// ft_printf("%i\n", *((int *)((t_list *)data->pathways->content)->content));
-			// ft_printf("%i\n", ((size_t )((t_list *)data->pathways->content)->content_size));
 		}
 		else
 		{
@@ -108,9 +97,8 @@ void	detect_pathways(t_data *data)
 			temp->content = path;
 			ft_lstadd_back(data->pathways, temp);
 		}
-		//ft_lstiter((t_list *)(data->pathways->content), &print_int);
-		possible_ways--;
+		
 	}
-	ft_printf("\npath way length %u\n", ft_lstlen(data->pathways));
+	ft_printf("\nNumber of possible pathways %u\n", ft_lstlen(data->pathways));
 	print_pathways(data->pathways);
 }

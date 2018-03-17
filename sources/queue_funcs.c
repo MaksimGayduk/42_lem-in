@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 14:57:39 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/16 14:58:28 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/17 14:13:37 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,4 @@ void	add_to_queue(t_list **queue, t_data *data, int index)
 		}
 		j++;
 	}
-	ft_lstiter(*queue, &print_int);
-	ft_printf("\n");
 }
