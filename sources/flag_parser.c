@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 12:37:45 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:20:18 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:29:22 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	init_flags(t_flags *flags)
 	flags->p = 0;
 	flags->s = 0;
 	flags->h = 0;
+	flags->j = 0;
 }
 
 static void	detect_flag(char *arg, t_flags *flags)
@@ -30,6 +31,8 @@ static void	detect_flag(char *arg, t_flags *flags)
 		flags->s = 1;
 	else if (ft_strequ(arg, "-h"))
 		flags->h = 1;
+	else if (ft_strequ(arg, "-j"))
+		flags->j = 1;
 	else
 		flags->e ? error(ft_strdup(arg), "incorrect flag")
 					: error(NULL, NULL);

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:19:45 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:35:09 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	struct	s_flags
 	short		p;
 	short		s;
 	short		h;
+	short		j;
 }				t_flags;
 
 /*
@@ -77,7 +78,8 @@ typedef struct	s_data
 t_flags			parse_flags(char ***args, int argc);
 void			error(char *line, char *desc);
 void			print_pathways(t_data data);
-void			print_ants(t_ant *ants, int ant_qty);
+void			print_help(void);
+void			show_joke(void);
 void			delete_room(void *room, size_t content_size);
 void			delete_path(void *content, size_t content_size);
 void			delete_pathways(t_list **head);
