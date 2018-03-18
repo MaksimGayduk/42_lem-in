@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 11:12:26 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 14:15:33 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
+# define ERROR_MSG(s) data->flags.e ? error(line, s) : error(NULL, NULL);
+
+typedef	struct	s_flags
+{
+	short		e;
+}				t_flags;
 
 /*
 ** Status description:
@@ -60,9 +66,12 @@ typedef struct	s_data
 	t_matrix	adj;
 	t_list		*pathways;
 	t_ant		*ants;
+	t_flags		flags;
 }				t_data;
 
-void			error(void);
+
+t_flags			parse_flags(char ***args, int argc);
+void			error(char *line, char *desc);
 void			print_rooms(t_list *rooms);
 void			print_room_arr(t_room *room_arr, int room_num);
 void			print_int(t_list *room);
@@ -75,15 +84,15 @@ void			print_ants(t_ant *ants, int ant_qty);
 /*
 ** Functions for reading data
 */
-t_data			read_data(void);
+void			read_data(t_data *data);
 int				is_comment(char *line);
 int				is_instruct(char *line);
 int				is_room(char *line);
-int				is_link(t_list *rooms, char *line);
+int				is_link(t_data *data, char *line);
 void 			parse_room(t_data *data, char *line, char status);
 void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
-void			check_status(t_list *rooms);
+void			check_status(t_list *rooms, short e);
 
 /*
 ** Functions for pathways serching

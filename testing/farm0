@@ -1,0 +1,10 @@
+#palma
+#epta
+4
+##start
+zero 0 0
+##end
+one 1 1
+two 2 3
+zero-two
+two-one

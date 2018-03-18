@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/15 11:48:22 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 14:24:01 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 's');
 		else
-			error();
+			ERROR_MSG("incorrect room parameters");
 	}
 	else if (ft_strequ(line, "##end"))
 	{
@@ -30,8 +30,10 @@ void exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 'e');
 		else
-			error();
+			ERROR_MSG("incorrect room parameters");
 	}
+	else
+		ERROR_MSG("incorrect instruction");
 }
 
 void parse_room(t_data *data, char *line, char status)
@@ -72,7 +74,7 @@ void	parse_link(t_data *data, char *line)
 	ft_clear_strarr(&arr);
 }
 
-void	check_status(t_list *rooms)
+void	check_status(t_list *rooms, short e)
 {
 	int		start;
 	int		end;
@@ -87,6 +89,14 @@ void	check_status(t_list *rooms)
 			end++;
 		rooms = rooms->next;
 	}
-	if (start != 1 || end != 1)
-		error();
+	if (start == 0)
+		e ? error(NULL, "start room wasn`t specified") : error(NULL, NULL);
+	if (end == 0)
+		e ? error(NULL, "end room wasn`t specified") : error(NULL, NULL);
+	if (start > 1)
+		e ? error(NULL, "there are more than one START room") :
+			error(NULL, NULL);
+	if (end > 1)
+		e ? error(NULL, "there are more than one END room") :
+			error(NULL, NULL);
 }

@@ -6,15 +6,24 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 10:34:51 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 14:30:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	error(void)
+void	error(char *line, char *desc)
 {
-	exit(write(1, "Error\n", 6));
+	if (!line && !desc)
+		exit(write(1, "Error\n", 6));
+	else if(!line && desc)
+		exit(ft_printf("Error: %s\n", desc));
+	else
+	{
+		ft_printf("Error: %s <%s>\n", desc, line);
+		ft_strdel(&line);
+		exit(1);
+	}
 }
 
 void	print_int(t_list *room)

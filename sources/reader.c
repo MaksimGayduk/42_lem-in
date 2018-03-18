@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 12:22:48 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 14:27:37 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static void	read_ant_qty(t_data *data)
 		{
 			data->ant_qty = ft_atoi(line);
 			if (data->ant_qty <= 0)
-				error();
+				ERROR_MSG("non-positive value");
 			ft_strdel(&line);
 			return ;
 		}
 		else
 		{
+			ERROR_MSG("incorrect ants quantity value");
 			ft_strdel(&line);
-			error();
 		}
 	}
 }
@@ -54,10 +54,10 @@ static char	*read_rooms(t_data *data)
 			exec_instr(data, line);
 		else if (is_room(line))
 			parse_room(data, line, 'c');
-		else if (is_link(data->rooms, line))
+		else if (is_link(data, line))
 			return (line);
 		else
-			error();
+			ERROR_MSG("incorrect room parameters");
 	}
 	return (NULL);
 }
@@ -77,10 +77,10 @@ static void build_adj_matrix(t_data *data, char *temp)
 			ft_strdel(&line);
 			continue ;
 		}
-		if (is_link(data->rooms, line))
+		if (is_link(data, line))
 			parse_link(data, line);
 		else
-			error();
+			ERROR_MSG("incorect link")
 	}
 	print_matrix(data->adj);
 }
@@ -104,21 +104,19 @@ static void	write_rooms_to_arr(t_data *data)
 	}
 }
 
-t_data	read_data(void)
+void	read_data(t_data *data)
 {
 	char 	*temp;
-	t_data	data;
 
-	open("./testing/farm3", O_RDONLY);
+	open("./testing/farm0", O_RDONLY);
 
-	data.ant_qty = 0;
-	data.rooms = NULL;
-	data.room_arr = NULL;
-	data.pathways = NULL;
-	read_ant_qty(&data);
-	temp = read_rooms(&data);
-	check_status(data.rooms);
-	build_adj_matrix(&data, temp);
-	write_rooms_to_arr(&data);
-	return (data);
+
+	read_ant_qty(data);
+	temp = read_rooms(data);
+	if (!temp)
+		data->flags.e ? error(NULL, "there are no links between rooms") :
+						error(NULL, NULL);
+	check_status(data->rooms, data->flags.e);
+	build_adj_matrix(data, temp);
+	write_rooms_to_arr(data);
 }
