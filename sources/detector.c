@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:32:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/17 14:14:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 10:51:58 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,30 @@ int get_qty_ways(t_data data, int index)
 	return (ways);
 }
 
+void	add_to_pathways(t_data *data, t_list *path)
+{
+	t_list *temp;
+
+	if (!(data->pathways))
+	{
+		data->pathways = ft_lstnew(NULL, 0);
+		data->pathways->content = path;
+		data->pathways->content_size = ft_lstlen(path) - 1;
+	}
+	else
+	{
+		temp = ft_lstnew(NULL, 0);
+		temp->content = path;
+		temp->content_size = ft_lstlen(path) - 1;
+		ft_lstadd_back(data->pathways, temp);
+	}
+}
+
 void	detect_pathways(t_data *data)
 {
 	int index;
 	int possible_ways;
 	t_list *path;
-	t_list *temp;
 	
 	index = get_index_by_status(data->room_arr, data->room_num, 'e');
 	possible_ways = get_qty_ways(*data, index);
@@ -86,19 +104,10 @@ void	detect_pathways(t_data *data)
 		possible_ways--;
 		if (!path)
 			continue ;
-		if (!(data->pathways))
-		{
-			data->pathways = ft_lstnew(NULL, 0);
-			data->pathways->content = path;
-		}
 		else
-		{
-			temp = ft_lstnew(NULL, 0);
-			temp->content = path;
-			ft_lstadd_back(data->pathways, temp);
-		}
-		
+			add_to_pathways(data, path);		
 	}
+	unset_visited(data);
 	ft_printf("\nNumber of possible pathways %u\n", ft_lstlen(data->pathways));
 	print_pathways(data->pathways);
 }

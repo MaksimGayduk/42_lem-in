@@ -6,13 +6,13 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/17 14:16:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 11:19:00 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	read_lem_num(t_data *data)
+static void	read_ant_qty(t_data *data)
 {
 	char	*line;
 
@@ -25,7 +25,9 @@ static void	read_lem_num(t_data *data)
 		}
 		if (ft_is_number(line))
 		{
-			data->lem_num = ft_atoi(line);
+			data->ant_qty = ft_atoi(line);
+			if (data->ant_qty <= 0)
+				error();
 			ft_strdel(&line);
 			return ;
 		}
@@ -107,13 +109,13 @@ t_data	read_data(void)
 	char 	*temp;
 	t_data	data;
 
-	open("./testing/farm2", O_RDONLY);
+	open("./testing/farm3", O_RDONLY);
 
-	data.lem_num = 0;
+	data.ant_qty = 0;
 	data.rooms = NULL;
 	data.room_arr = NULL;
 	data.pathways = NULL;
-	read_lem_num(&data);
+	read_ant_qty(&data);
 	temp = read_rooms(&data);
 	check_status(data.rooms);
 	build_adj_matrix(&data, temp);
