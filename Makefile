@@ -6,7 +6,7 @@
 #    By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 08:37:35 by mgayduk           #+#    #+#              #
-#    Updated: 2018/03/18 12:32:34 by mgayduk          ###   ########.fr        #
+#    Updated: 2018/03/18 16:42:13 by mgayduk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INC_DIR := ./includes ./libft/includes
 LFT_DIR := ./libft
 
 # Source files
-SRC :=	lem-in.c			\
+SRC :=	lem_in.c			\
 		flag_parser.c 		\
 		reader.c			\
 		reader_checks.c		\

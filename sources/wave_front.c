@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:45:54 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 15:57:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:56:55 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	mark_wave(t_data data, t_list *queue, int wave)
 
 void	handle_start_vertex(t_data *data, t_list **queue)
 {
-	int index;
-	
+	int	index;
+
 	index = get_index_by_status(data->room_arr, data->room_num, 's');
 	data->room_arr[index].wave = 0;
 	data->room_arr[index].visited = 1;

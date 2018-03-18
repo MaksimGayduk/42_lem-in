@@ -6,21 +6,16 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:35:09 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:59:04 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-#include "libft.h"
-#include "matrix.h"
-#include <stdlib.h>
-#include <inttypes.h>
-
-# include <fcntl.h>
-# include <sys/uio.h>
-# include <unistd.h>
+# include "libft.h"
+# include "matrix.h"
+# include <inttypes.h>
 
 # define FD 0
 # define EMPTY -42
@@ -74,7 +69,6 @@ typedef struct	s_data
 	t_flags		flags;
 }				t_data;
 
-
 t_flags			parse_flags(char ***args, int argc);
 void			error(char *line, char *desc);
 void			print_pathways(t_data data);
@@ -93,7 +87,7 @@ int				is_comment(char *line);
 int				is_instruct(char *line);
 int				is_room(char *line);
 int				is_link(t_data *data, char *line);
-void 			parse_room(t_data *data, char *line, char status);
+void			parse_room(t_data *data, char *line, char status);
 void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
 void			check_status(t_list *rooms, short e);
@@ -108,14 +102,17 @@ void			detect_pathways(t_data *data);
 void			unset_visited(t_data *data);
 
 /*
-** room functions
+** Room functions
 */
 int				get_index_by_name(t_list *rooms, char *name);
-int				get_index_by_status(t_room *room_arr, int room_num, char status);
+int				get_index_by_status(t_room *room_arr, int room_num,
+									char status);
 
+/*
+**	Ants functions
+*/
 void			transfer_ants(t_data *data);
 void			create_ants(t_data *data);
 void			appoint_path(t_data *data);
-
 
 #endif

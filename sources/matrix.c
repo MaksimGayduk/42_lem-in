@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 13:50:31 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/14 15:40:12 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:42:45 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_matrix		create_matrix(size_t rows, size_t cols)
+t_matrix	create_matrix(size_t rows, size_t cols)
 {
 	t_matrix	m;
 	size_t		i;

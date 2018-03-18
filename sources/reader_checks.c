@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 14:25:30 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:44:05 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_comment(char *line)
 {
 	int len;
-	
+
 	len = ft_strlen(line);
 	if (len >= 2 && line[0] == '#' && line[1] != '#')
 		return (1);
@@ -29,11 +29,11 @@ int	is_instruct(char *line)
 	return (0);
 }
 
-int is_room(char *line)
+int	is_room(char *line)
 {
-	char	**arr;
-	intmax_t x;
-	intmax_t y;
+	char		**arr;
+	intmax_t	x;
+	intmax_t	y;
 
 	if (ft_word_count(line, ' ') != 3)
 		return (0);

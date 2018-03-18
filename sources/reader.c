@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:19:30 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:53:46 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	*read_rooms(t_data *data)
 	return (NULL);
 }
 
-static void build_adj_matrix(t_data *data, char *temp)
+static void	build_adj_matrix(t_data *data, char *temp)
 {
 	size_t	room_qty;
 	char	*line;
@@ -83,7 +83,7 @@ static void build_adj_matrix(t_data *data, char *temp)
 		if (is_link(data, line))
 			parse_link(data, line);
 		else
-			ERROR_MSG("incorect link")
+			ERROR_MSG("incorect link");
 	}
 }
 
@@ -100,15 +100,16 @@ static void	write_rooms_to_arr(t_data *data)
 	while (temp)
 	{
 		index = ((t_room *)temp->content)->index;
-		ft_memcpy(&(data->room_arr[index]), (t_room *)temp->content, sizeof(t_room));
+		ft_memcpy(&(data->room_arr[index]), (t_room *)temp->content,
+					sizeof(t_room));
 		data->room_arr[index].name = ft_strdup(((t_room *)temp->content)->name);
 		temp = temp->next;
 	}
 }
 
-void	read_data(t_data *data)
+void		read_data(t_data *data)
 {
-	char 	*temp;
+	char	*temp;
 
 	read_ant_qty(data);
 	temp = read_rooms(data);

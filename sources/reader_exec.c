@@ -6,16 +6,16 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:13:47 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:45:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void exec_instr(t_data *data, char *line)
+void	exec_instr(t_data *data, char *line)
 {
 	if (ft_strequ(line, "##start"))
-	{	
+	{
 		ft_strdel(&line);
 		get_next_line(FD, &line);
 		PRINT_LINE(line);
@@ -38,7 +38,7 @@ void exec_instr(t_data *data, char *line)
 		ERROR_MSG("incorrect instruction");
 }
 
-void parse_room(t_data *data, char *line, char status)
+void	parse_room(t_data *data, char *line, char status)
 {
 	char			**arr;
 	t_room			room;

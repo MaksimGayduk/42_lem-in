@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:35:58 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:41:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error(char *line, char *desc)
 {
 	if (!line && !desc)
 		exit(write(1, "Error\n", 6));
-	else if(!line && desc)
+	else if (!line && desc)
 		exit(ft_printf("Error: %s\n", desc));
 	else
 	{
@@ -39,9 +39,11 @@ void	print_pathways(t_data data)
 		while (temp)
 		{
 			if (!temp->next)
-				ft_printf("[%s]", data.room_arr[*((int *)temp->content)].name);
+				ft_printf("[%s]",
+					data.room_arr[*((int *)temp->content)].name);
 			else
-				ft_printf("[%s]->", data.room_arr[*((int *)temp->content)].name);
+				ft_printf("[%s]->",
+					data.room_arr[*((int *)temp->content)].name);
 			temp = temp->next;
 		}
 		ft_printf(" - length : %u", pathways->content_size);
@@ -66,7 +68,7 @@ void	print_help(void)
 void	show_joke(void)
 {
 	setlocale(LC_CTYPE, "");
-	ft_printf("В детстве смеялся над басней Крылова про стрекозу и муравья...\n");
+	ft_printf("В детстве смеялся над басней Крылова про стрекозу и муравья.\n");
 	ft_printf("Не понимал, как можно не заметить, что прошло лето.\n");
 	ft_printf("Сейчас не смешно.\n");
 }

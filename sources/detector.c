@@ -6,12 +6,11 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:32:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 15:41:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:39:40 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 int		get_next_vertex(t_data data, int index)
 {
@@ -51,10 +50,9 @@ void	find_path_to_start(t_data *data, t_list **path, int index)
 	}
 	ft_lstadd(path, ft_lstnew(&vertex, sizeof(vertex)));
 	find_path_to_start(data, path, vertex);
-
 }
 
-int get_qty_ways(t_data data, int index)
+int		get_qty_ways(t_data data, int index)
 {
 	int ways;
 	int j;
@@ -91,10 +89,10 @@ void	add_to_pathways(t_data *data, t_list *path)
 
 void	detect_pathways(t_data *data)
 {
-	int index;
-	int possible_ways;
-	t_list *path;
-	
+	int		index;
+	int		possible_ways;
+	t_list	*path;
+
 	index = get_index_by_status(data->room_arr, data->room_num, 'e');
 	possible_ways = get_qty_ways(*data, index);
 	while (possible_ways)
@@ -105,7 +103,7 @@ void	detect_pathways(t_data *data)
 		if (!path)
 			continue ;
 		else
-			add_to_pathways(data, path);		
+			add_to_pathways(data, path);
 	}
 	unset_visited(data);
 }
