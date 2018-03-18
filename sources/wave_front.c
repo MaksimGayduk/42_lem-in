@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:45:54 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 10:51:48 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:57:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ void	wave_front(t_data *data)
 		index = *((int *)queue->content);
 		if (data->room_arr[index].wave > wave)
 			wave++;
-		if (data->room_arr[index].status == 'e')
-			printf("the shortest way to the end is %i\n",
-					data->room_arr[index].wave);
 		if (!data->room_arr[index].visited)
 		{
 			add_to_queue(&queue, data, index);

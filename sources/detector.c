@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:32:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 10:51:58 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:41:13 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,4 @@ void	detect_pathways(t_data *data)
 			add_to_pathways(data, path);		
 	}
 	unset_visited(data);
-	ft_printf("\nNumber of possible pathways %u\n", ft_lstlen(data->pathways));
-	print_pathways(data->pathways);
 }

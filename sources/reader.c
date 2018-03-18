@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 14:27:37 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:19:30 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	read_ant_qty(t_data *data)
 
 	while (get_next_line(FD, &line) > 0)
 	{
+		PRINT_LINE(line);
 		if (is_comment(line))
 		{
 			ft_strdel(&line);
@@ -45,6 +46,7 @@ static char	*read_rooms(t_data *data)
 
 	while (get_next_line(FD, &line) > 0)
 	{
+		PRINT_LINE(line);
 		if (is_comment(line))
 		{
 			ft_strdel(&line);
@@ -72,6 +74,7 @@ static void build_adj_matrix(t_data *data, char *temp)
 	parse_link(data, temp);
 	while (get_next_line(FD, &line) > 0)
 	{
+		PRINT_LINE(line);
 		if (is_comment(line))
 		{
 			ft_strdel(&line);
@@ -82,7 +85,6 @@ static void build_adj_matrix(t_data *data, char *temp)
 		else
 			ERROR_MSG("incorect link")
 	}
-	print_matrix(data->adj);
 }
 
 static void	write_rooms_to_arr(t_data *data)
@@ -107,9 +109,6 @@ static void	write_rooms_to_arr(t_data *data)
 void	read_data(t_data *data)
 {
 	char 	*temp;
-
-	open("./testing/farm0", O_RDONLY);
-
 
 	read_ant_qty(data);
 	temp = read_rooms(data);

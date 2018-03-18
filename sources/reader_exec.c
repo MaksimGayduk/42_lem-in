@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 14:24:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:13:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void exec_instr(t_data *data, char *line)
 	{	
 		ft_strdel(&line);
 		get_next_line(FD, &line);
+		PRINT_LINE(line);
 		if (is_room(line))
 			parse_room(data, line, 's');
 		else
@@ -27,6 +28,7 @@ void exec_instr(t_data *data, char *line)
 	{
 		ft_strdel(&line);
 		get_next_line(FD, &line);
+		PRINT_LINE(line);
 		if (is_room(line))
 			parse_room(data, line, 'e');
 		else
@@ -90,9 +92,9 @@ void	check_status(t_list *rooms, short e)
 		rooms = rooms->next;
 	}
 	if (start == 0)
-		e ? error(NULL, "start room wasn`t specified") : error(NULL, NULL);
+		e ? error(NULL, "START room wasn`t specified") : error(NULL, NULL);
 	if (end == 0)
-		e ? error(NULL, "end room wasn`t specified") : error(NULL, NULL);
+		e ? error(NULL, "END room wasn`t specified") : error(NULL, NULL);
 	if (start > 1)
 		e ? error(NULL, "there are more than one START room") :
 			error(NULL, NULL);

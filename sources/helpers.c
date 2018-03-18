@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 14:30:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:27:48 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,68 +26,37 @@ void	error(char *line, char *desc)
 	}
 }
 
-void	print_int(t_list *room)
+void	print_pathways(t_data data)
 {
-	ft_printf("%i ", *((int *)room->content));
-}
+	t_list *temp;
+	t_list *pathways;
 
-void	print_rooms(t_list *rooms)
-{
-	while (rooms)
-	{
-		ft_printf("---\nname - %s\nx: %i\ny: %i\nstatus: %c\nindex: %i\n",
-										((t_room *)(rooms->content))->name,
-										((t_room *)(rooms->content))->x,
-										((t_room *)(rooms->content))->y,
-										((t_room *)(rooms->content))->status,
-										((t_room *)(rooms->content))->index);
-		rooms = rooms->next;
-	}
-}
-
-void	print_room_arr(t_room *room_arr, int room_num)
-{
-	int i;
-
-	i = 0;
-	while (i < room_num)
-	{
-		ft_printf("---\nname - %s\nx: %i\ny: %i\nstatus: %c\nindex: %i\nvisited: %i\nwave: %i\n",
-										room_arr[i].name,
-										room_arr[i].x,
-										room_arr[i].y,
-										room_arr[i].status,
-										room_arr[i].index,
-										room_arr[i].visited,
-										room_arr[i].wave);
-		i++;
-	}
-}
-
-void	print_pathways(t_list *pathways)
-{
+	pathways = data.pathways;
 	while (pathways)
 	{
+		temp = (t_list *)(pathways->content);
 		ft_printf("\n");
-		ft_lstiter((t_list *)(pathways->content), &print_int);
-		ft_printf("\tlength : %u", pathways->content_size);
+		while (temp)
+		{
+			if (!temp->next)
+				ft_printf("[%s]", data.room_arr[*((int *)temp->content)].name);
+			else
+				ft_printf("[%s]->", data.room_arr[*((int *)temp->content)].name);
+			temp = temp->next;
+		}
+		ft_printf(" - length : %u", pathways->content_size);
 		ft_printf("\n");
 		pathways = pathways->next;
 	}
+	ft_printf("\n");
 }
 
-void	print_ants(t_ant *ants, int ant_qty)
+void	print_help(void)
 {
-	int i;
-	
-	i = 0;
-	while (i < ant_qty)
-	{
-		ft_printf("name: %i", ants[i].name);
-		ft_printf("\n");
-		ft_lstiter(ants[i].path, &print_int);
-		//ft_printf("\tWill finish in %i steps\n", ants[i].steps);
-		ft_printf("\n");
-		i++;
-	}
+	ft_printf("Usage: ./lem-in [flags] < map_file\n\n");
+	ft_printf("Flags description:\n");
+	ft_printf("-e - explain errors\n");
+	ft_printf("-p - show possible pathways\n");
+	ft_printf("-s - supress output of file data\n");
+	ft_printf("-h - show help\n");
 }

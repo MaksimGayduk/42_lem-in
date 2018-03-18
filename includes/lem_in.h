@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 14:15:33 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:19:45 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-# define FD 3
+# define FD 0
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
 # define ERROR_MSG(s) data->flags.e ? error(line, s) : error(NULL, NULL);
+# define PRINT_LINE(line) data->flags.s == 1 ? 0 : ft_printf("%s\n", line);
 
 typedef	struct	s_flags
 {
 	short		e;
+	short		p;
+	short		s;
+	short		h;
 }				t_flags;
 
 /*
@@ -72,14 +76,12 @@ typedef struct	s_data
 
 t_flags			parse_flags(char ***args, int argc);
 void			error(char *line, char *desc);
-void			print_rooms(t_list *rooms);
-void			print_room_arr(t_room *room_arr, int room_num);
-void			print_int(t_list *room);
-void			print_pathways(t_list *pathways);
+void			print_pathways(t_data data);
+void			print_ants(t_ant *ants, int ant_qty);
 void			delete_room(void *room, size_t content_size);
 void			delete_path(void *content, size_t content_size);
 void			delete_pathways(t_list **head);
-void			print_ants(t_ant *ants, int ant_qty);
+void			clear_data(t_data *data);
 
 /*
 ** Functions for reading data
