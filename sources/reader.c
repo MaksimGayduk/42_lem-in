@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:53:46 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 09:57:17 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ void		read_data(t_data *data)
 						error(NULL, NULL);
 	check_status(data->rooms, data->flags.e);
 	build_adj_matrix(data, temp);
+	ft_printf("\n");
 	write_rooms_to_arr(data);
 }
