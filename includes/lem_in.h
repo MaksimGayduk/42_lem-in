@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 12:07:10 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:47:24 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
 # define ERROR_MSG(s) data->flags.e ? error(line, s) : error(NULL, NULL);
-# define PRINT_LINE(line) data->flags.s == 1 ? 0 : ft_printf("%s\n", line);
+# define ERROR_MSG2(s) data->flags.e ? error(NULL, s) : error(NULL, NULL);
+# define PRINT(line) data->flags.s == 1 ? 0 : ft_printf("%s\n", line)
+# define PRINT_LINE(line) !is_comment(line) ? PRINT(line) : 0
 
 typedef	struct	s_flags
 {
@@ -54,12 +56,11 @@ typedef struct	s_ant
 {
 	int			name;
 	t_list		*path;
-	int			steps;
 }				t_ant;
 
 typedef struct	s_data
 {
-	int			ant_qty;
+	intmax_t	ant_qty;
 	int			room_num;
 	t_list		*rooms;
 	t_room		*room_arr;
@@ -94,6 +95,7 @@ void			exec_instr(t_data *data, char *line);
 void			check_status(t_list *rooms, short e);
 void			write_ants_qty(t_data *data, char *line);
 void			check_file(t_data *data, char *line, int i);
+void			check_uniqe_room(t_data *data, t_room room, char *line);
 
 /*
 ** Functions for pathways serching

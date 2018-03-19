@@ -1,7 +1,10 @@
-5
+#ant_number
+10
+#rooms
 ##start
 A 0 0
 ##end
-B 0 0
-A-B
-B-A
+B 1 1
+C 3 3
+#links
+A-C
