@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:41:02 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 13:35:57 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_pathways(t_data data)
 					data.room_arr[*((int *)temp->content)].name);
 			temp = temp->next;
 		}
-		ft_printf(" - length : %u", pathways->content_size);
+		ft_printf(" - steps : %u", pathways->content_size);
 		ft_printf("\n");
 		pathways = pathways->next;
 	}
