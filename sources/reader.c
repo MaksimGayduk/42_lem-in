@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 09:57:17 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 12:07:15 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 static void	read_ant_qty(t_data *data)
 {
 	char	*line;
+	int		i;
 
+	i = 0;
 	while (get_next_line(FD, &line) > 0)
 	{
+		i++;
 		PRINT_LINE(line);
 		if (is_comment(line))
 		{
@@ -26,10 +29,7 @@ static void	read_ant_qty(t_data *data)
 		}
 		if (ft_is_number(line))
 		{
-			data->ant_qty = ft_atoi(line);
-			if (data->ant_qty <= 0)
-				ERROR_MSG("non-positive value");
-			ft_strdel(&line);
+			write_ants_qty(data, line);
 			return ;
 		}
 		else
@@ -38,14 +38,18 @@ static void	read_ant_qty(t_data *data)
 			ft_strdel(&line);
 		}
 	}
+	check_file(data, line, i);
 }
 
 static char	*read_rooms(t_data *data)
 {
 	char	*line;
+	int		i;
 
+	i = 0;
 	while (get_next_line(FD, &line) > 0)
 	{
+		i++;
 		PRINT_LINE(line);
 		if (is_comment(line))
 		{
@@ -61,6 +65,8 @@ static char	*read_rooms(t_data *data)
 		else
 			ERROR_MSG("incorrect room parameters");
 	}
+	if (!i)
+		ERROR_MSG("incorrect room parameters");
 	return (NULL);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:03:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2017/12/12 13:08:14 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 11:51:12 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static int		fetch_line(const int fd, char **buffer, char **line, int bytes)
 
 t_list			*get_file(const int fd, t_list *head)
 {
-	t_list *temp;
+	t_list	*temp;
+	t_list	*node;
 
 	while (head)
 	{
@@ -79,9 +80,10 @@ t_list			*get_file(const int fd, t_list *head)
 		temp = head;
 		head = head->next;
 	}
-	ft_lstadd_back(temp, ft_lstnew(ft_strnew(BUFF_SIZE), fd));
-	temp = temp->next;
-	temp->content_size = fd;
+	node = ft_lstnew(NULL, 0);
+	node->content = ft_strnew(BUFF_SIZE);
+	node->content_size = fd;
+	temp = ft_lstadd_back(temp, node);
 	return (temp);
 }
 
@@ -89,17 +91,15 @@ int				get_next_line(const int fd, char **line)
 {
 	static t_list	*head;
 	t_list			*file;
-	char			*temp;
 
 	if (fd < 0)
 		return (ERROR);
 	if (!head)
 	{
-		temp = ft_strnew(BUFF_SIZE);
-		head = ft_lstnew(temp, BUFF_SIZE);
+		head = ft_lstnew(NULL, 0);
+		head->content = ft_strnew(BUFF_SIZE);
 		head->content_size = fd;
 		file = head;
-		ft_strdel(&temp);
 	}
 	else
 		file = get_file(fd, head);

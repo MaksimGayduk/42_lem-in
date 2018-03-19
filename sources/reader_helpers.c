@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_count.c                                    :+:      :+:    :+:   */
+/*   reader_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/13 18:38:16 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 13:33:21 by mgayduk          ###   ########.fr       */
+/*   Created: 2018/03/19 12:00:43 by mgayduk           #+#    #+#             */
+/*   Updated: 2018/03/19 13:31:16 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-size_t	ft_word_count(char const *s, char c)
+void	write_ants_qty(t_data *data, char *line)
 {
-	int		trig;
-	size_t	word_count;
+	data->ant_qty = ft_atoi(line);
+	if (data->ant_qty <= 0)
+		ERROR_MSG("non-positive value");
+	ft_strdel(&line);
+}
 
-	trig = 0;
-	word_count = 0;
-	while (*s)
-	{
-		if (*s != c && !trig)
-		{
-			word_count++;
-			trig = 1;
-		}
-		if (*s == c && trig)
-			trig = 0;
-		s++;
-	}
-	return (word_count);
+void	check_file(t_data *data, char *line, int i)
+{
+	if (i && !data->ant_qty)
+		ERROR_MSG("no ants quantity");
+	if (!i)
+		ERROR_MSG("file is empty");
 }

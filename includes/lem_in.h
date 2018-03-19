@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 11:10:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 12:07:10 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void			parse_room(t_data *data, char *line, char status);
 void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);
 void			check_status(t_list *rooms, short e);
+void			write_ants_qty(t_data *data, char *line);
+void			check_file(t_data *data, char *line, int i);
 
 /*
 ** Functions for pathways serching
