@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:28:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 10:45:40 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 11:15:57 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void		clear_data(t_data *data)
 {
 	free_matrix(data->adj);
 	ft_lstdel(&(data->rooms), &delete_room);
+	delete_room_arr(data);
 	delete_pathways(&(data->pathways));
+	free(data->ants);
 }
 
 static void	init_data(t_data *data)

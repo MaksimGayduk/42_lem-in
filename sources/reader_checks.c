@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:44:05 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 11:10:02 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,10 @@ int	in_list_by_name(t_list *rooms, char *name)
 int	is_link(t_data *data, char *line)
 {
 	char	**arr;
-	int		i;
 
 	if (ft_word_count(line, '-') != 2)
 		return (0);
 	arr = ft_strsplit(line, '-');
-	i = 0;
 	if (in_list_by_name(data->rooms, arr[0]) &&
 		in_list_by_name(data->rooms, arr[1]))
 	{

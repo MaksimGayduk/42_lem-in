@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 09:26:54 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/18 16:40:09 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 11:10:09 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,17 @@ void	delete_pathways(t_list **head)
 		temp->content_size = 0;
 		free(temp);
 	}
+}
+
+void	delete_room_arr(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->room_num)
+	{
+		ft_strdel(&(data->room_arr[i].name));
+		i++;
+	}
+	free(data->room_arr);
 }
