@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 16:29:13 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/19 17:54:33 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	exec_instr(t_data *data, char *line)
 		else
 			ERROR_MSG("incorrect room parameters");
 	}
-	else
-		ERROR_MSG("incorrect instruction");
 }
 
 void	parse_room(t_data *data, char *line, char status)
