@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:32:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 16:45:06 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/20 09:40:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	detect_pathways(t_data *data)
 	index = get_index_by_status(data->room_arr, data->room_num, 'e');
 	possible_ways = get_qty_ways(*data, index);
 	if (!possible_ways)
-		ERROR_MSG2("there are no possible ways");
+		ERROR_MSG2("the END room isn`n connected to any other room");
 	while (possible_ways)
 	{
 		path = ft_lstnew(&index, sizeof(index));
@@ -107,5 +107,7 @@ void	detect_pathways(t_data *data)
 		else
 			add_to_pathways(data, path);
 	}
+	if (!ft_lstlen(data->pathways))
+		ERROR_MSG2("there are no possible ways");
 	unset_visited(data);
 }
