@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 14:03:55 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 11:51:12 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/20 10:23:36 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ static void		fill_and_cut(char **line, char **buffer, char *line_end)
 	char	*temp;
 
 	len = line_end - *buffer;
-	*line = ft_strnew(len);
-	if (*line)
-		ft_memcpy(*line, *buffer, len);
+	if (len)
+	{
+		*line = ft_strnew(len);
+		if (*line)
+			ft_memcpy(*line, *buffer, len);
+	}
 	temp = *buffer;
 	if (*line_end == '\n')
 		*buffer = ft_strdup(++line_end);

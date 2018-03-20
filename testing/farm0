@@ -1,3 +1,4 @@
+#ant_qty
 5
 #rooms
 ##start
@@ -7,3 +8,4 @@ B 1 1
 C 3 3
 #links
 A-C
+B-C
