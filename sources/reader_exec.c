@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 18:22:25 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:06:12 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,23 @@ void	parse_link(t_data *data, char *line)
 	arr = ft_strsplit(line, '-');
 	i = get_index_by_name(data->rooms, arr[0]);
 	j = get_index_by_name(data->rooms, arr[1]);
+	if (ft_strequ(arr[0], arr[1]))
+		ERROR_MESSAGE(NULL, "Self connected room");
 	data->adj.values[i][j] = 1;
 	data->adj.values[j][i] = 1;
 	ft_strdel(&line);
 	ft_clear_strarr(&arr);
 }
 
-void	check_status(t_list *rooms, short e)
+void	check_status(t_data *data)
 {
 	int		start;
 	int		end;
+	t_list	*rooms;
 
 	start = 0;
 	end = 0;
+	rooms = data->rooms;
 	while (rooms)
 	{
 		if (((t_room *)rooms->content)->status == 's')
@@ -95,13 +99,11 @@ void	check_status(t_list *rooms, short e)
 		rooms = rooms->next;
 	}
 	if (start == 0)
-		e ? error(NULL, "START room wasn`t specified") : error(NULL, NULL);
+		ERROR_MESSAGE(NULL, "START room wasn`t specified");
 	if (end == 0)
-		e ? error(NULL, "END room wasn`t specified") : error(NULL, NULL);
+		ERROR_MESSAGE(NULL, "END room wasn`t specified");
 	if (start > 1)
-		e ? error(NULL, "there are more than one START room") :
-			error(NULL, NULL);
+		ERROR_MESSAGE(NULL, "there are more than one START room");
 	if (end > 1)
-		e ? error(NULL, "there are more than one END room") :
-			error(NULL, NULL);
+		ERROR_MESSAGE(NULL, "there are more than one END room");
 }

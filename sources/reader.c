@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 18:07:18 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:51:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	build_adj_matrix(t_data *data, char **line)
 	parse_link(data, *line);
 	while (get_next_line(FD, line) > 0)
 	{
-		if (!(*line) && ft_printf("Warning: empty line\n"))
+		if (!(*line) && ft_printf(MAGENTA "Warning: empty line\n" F_RESET))
 			return ;
 		PRINT_LINE(*line);
 		if (is_comment(*line))
@@ -76,8 +76,11 @@ static void	build_adj_matrix(t_data *data, char **line)
 		}
 		if (is_link(data, *line))
 			parse_link(data, *line);
-		else if (ft_printf("Warning: incorrect link <%s>\n", *line))
+		else
+		{
+			ft_printf(MAGENTA "Warning: incorrect link <%s>\n" F_RESET, *line);
 			return ;
+		}
 	}
 }
 
@@ -111,7 +114,7 @@ void		read_data(t_data *data)
 	read_rooms(data, &line);
 	if (!line)
 		ERROR_MESSAGE(line, "there are no links between rooms");
-	check_status(data->rooms, data->flags.e);
+	check_status(data);
 	build_adj_matrix(data, &line);
 	ft_printf("\n");
 	write_rooms_to_arr(data);
