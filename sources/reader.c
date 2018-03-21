@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 18:51:27 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:25:50 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	read_ant_qty(t_data *data, char **line)
 	while (get_next_line(FD, line) > 0)
 	{
 		if (!(*line))
-			ERROR_MESSAGE(*line, "empty line");
+			ERROR_MSG(*line, "empty line");
 		PRINT_LINE(*line);
 		if (is_comment(*line))
 		{
@@ -29,9 +29,9 @@ static void	read_ant_qty(t_data *data, char **line)
 			write_ants_qty(data, *line);
 			return ;
 		}
-		ERROR_MESSAGE(*line, "incorrect ants quantity value");
+		ERROR_MSG(*line, "incorrect ants quantity value");
 	}
-	ERROR_MESSAGE(*line, "empty file");
+	ERROR_MSG(*line, "empty file");
 }
 
 static void	read_rooms(t_data *data, char **line)
@@ -39,7 +39,7 @@ static void	read_rooms(t_data *data, char **line)
 	while (get_next_line(FD, line) > 0)
 	{
 		if (!(*line))
-			ERROR_MESSAGE(*line, "empty line");
+			ERROR_MSG(*line, "empty line");
 		PRINT_LINE(*line);
 		if (is_comment(*line))
 		{
@@ -53,7 +53,7 @@ static void	read_rooms(t_data *data, char **line)
 		else if (is_link(data, *line))
 			return ;
 		else
-			ERROR_MESSAGE(*line, "incorrect room parameters");
+			ERROR_MSG(*line, "incorrect room parameters");
 	}
 }
 
@@ -108,12 +108,11 @@ void		read_data(t_data *data)
 {
 	char	*line;
 
-	open("testing/farm0", O_RDONLY, 0);
 	line = NULL;
 	read_ant_qty(data, &line);
 	read_rooms(data, &line);
 	if (!line)
-		ERROR_MESSAGE(line, "there are no links between rooms");
+		ERROR_MSG(line, "there are no links between rooms");
 	check_status(data);
 	build_adj_matrix(data, &line);
 	ft_printf("\n");

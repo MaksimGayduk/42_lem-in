@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:28:21 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:11:05 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:13:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int			main(int argc, char **argv)
 	if (data.flags.p)
 		print_pathways(data);
 	transfer_ants(&data);
-	if (data.flags.j)
-		show_joke();
 	clear_data(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:06:12 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:25:00 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 's');
 		else
-			ERROR_MESSAGE(line, "incorrect room parameters");
+			ERROR_MSG(line, "incorrect room parameters");
 	}
 	else if (ft_strequ(line, "##end"))
 	{
@@ -34,10 +34,10 @@ void	exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 'e');
 		else
-			ERROR_MESSAGE(line, "incorrect room parameters");
+			ERROR_MSG(line, "incorrect room parameters");
 	}
 	else
-		ERROR_MESSAGE(line, "incorrect instruction");
+		ERROR_MSG(line, "incorrect instruction");
 }
 
 void	parse_room(t_data *data, char *line, char status)
@@ -74,7 +74,7 @@ void	parse_link(t_data *data, char *line)
 	i = get_index_by_name(data->rooms, arr[0]);
 	j = get_index_by_name(data->rooms, arr[1]);
 	if (ft_strequ(arr[0], arr[1]))
-		ERROR_MESSAGE(NULL, "Self connected room");
+		ERROR_MSG(NULL, "Self connected room");
 	data->adj.values[i][j] = 1;
 	data->adj.values[j][i] = 1;
 	ft_strdel(&line);
@@ -99,11 +99,12 @@ void	check_status(t_data *data)
 		rooms = rooms->next;
 	}
 	if (start == 0)
-		ERROR_MESSAGE(NULL, "START room wasn`t specified");
+		ERROR_MSG(NULL, "START room wasn`t specified");
 	if (end == 0)
-		ERROR_MESSAGE(NULL, "END room wasn`t specified");
+		ERROR_MSG(NULL, "END room wasn`t specified");
 	if (start > 1)
-		ERROR_MESSAGE(NULL, "there are more than one START room");
+		ERROR_MSG(NULL, "there are more than one START room");
 	if (end > 1)
-		ERROR_MESSAGE(NULL, "there are more than one END room");
+		ERROR_MSG(NULL, "there are more than one END room");
 }
+

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:16:30 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:13:05 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:16:31 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,5 @@ void	print_help(void)
 	ft_printf("-p - show possible pathways\n");
 	ft_printf("-s - supress output of file data\n");
 	ft_printf("-h - show help\n");
-	ft_printf("-j - show joke\n");
 	exit(1);
-}
-
-void	show_joke(void)
-{
-	setlocale(LC_CTYPE, "");
-	ft_printf("В детстве смеялся над басней Крылова про стрекозу и муравья.\n");
-	ft_printf("Не понимал, как можно не заметить, что прошло лето.\n");
-	ft_printf("Сейчас не смешно.\n");
 }

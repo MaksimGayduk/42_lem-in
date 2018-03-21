@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 18:45:21 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 19:25:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 # include "matrix.h"
 # include <inttypes.h>
 
-#include <fcntl.h>
-
-# define FD 3
+# define FD 0
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
-# define ERROR_MESSAGE(line, s) data->flags.e ? error(line, s) : error(NULL, NULL)
+# define ERROR_MSG(line, s) data->flags.e ? error(line,s) : error(NULL, NULL)
 # define PRINT_LINE(line) data->flags.s == 1 ? 0 : ft_printf("%s\n", line)
 
 typedef	struct	s_flags
@@ -32,7 +30,6 @@ typedef	struct	s_flags
 	short		p;
 	short		s;
 	short		h;
-	short		j;
 }				t_flags;
 
 /*
@@ -74,7 +71,6 @@ t_flags			parse_flags(char ***args, int argc);
 void			error(char *line, char *desc);
 void			print_pathways(t_data data);
 void			print_help(void);
-void			show_joke(void);
 void			delete_room(void *room, size_t content_size);
 void			delete_room_arr(t_data *data);
 void			delete_path(void *content, size_t content_size);
