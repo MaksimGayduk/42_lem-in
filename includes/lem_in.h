@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 18:24:01 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 17:58:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 # include "matrix.h"
 # include <inttypes.h>
 
-# define FD 0
+#include <fcntl.h>
+
+# define FD 3
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
+# define ERROR_MESSAGE(s) data->flags.e ? error(*line, s) : error(NULL, NULL);
 # define ERROR_MSG(s) data->flags.e ? error(line, s) : error(NULL, NULL);
 # define ERROR_MSG2(s) data->flags.e ? error(NULL, s) : error(NULL, NULL);
 # define PRINT_LINE(line) data->flags.s == 1 ? 0 : ft_printf("%s\n", line)

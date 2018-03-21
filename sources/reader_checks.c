@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/19 16:01:16 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 14:04:26 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	is_comment(char *line)
 {
 	int len;
 
+	if (!line)
+		return (0);
 	len = ft_strlen(line);
 	if (len >= 2 && line[0] == '#' && line[1] != '#')
 		return (1);
@@ -24,6 +26,8 @@ int	is_comment(char *line)
 
 int	is_instruct(char *line)
 {
+	if (!line)
+		return (0);
 	if (line[0] == '#' && line[1] == '#')
 		return (1);
 	return (0);
@@ -35,6 +39,8 @@ int	is_room(char *line)
 	intmax_t	x;
 	intmax_t	y;
 
+	if (!line)
+		return (0);
 	if (ft_word_count(line, ' ') != 3)
 		return (0);
 	arr = ft_strsplit(line, ' ');
@@ -69,6 +75,8 @@ int	is_link(t_data *data, char *line)
 {
 	char	**arr;
 
+	if (!line)
+		return (0);
 	if (ft_word_count(line, '-') != 2)
 		return (0);
 	arr = ft_strsplit(line, '-');

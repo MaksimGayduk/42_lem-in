@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:04:10 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/02/15 15:08:44 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 13:48:39 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_is_number(char *str)
 {
+	if (!str)
+		return (0);
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)

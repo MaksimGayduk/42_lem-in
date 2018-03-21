@@ -6,90 +6,78 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/20 10:03:56 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 17:58:10 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	read_ant_qty(t_data *data)
+static void	read_ant_qty(t_data *data, char **line)
 {
-	char	*line;
-	int		i;
-
-	i = 0;
-	while (get_next_line(FD, &line) > 0)
+	while (get_next_line(FD, line) > 0)
 	{
-		i++;
-		PRINT_LINE(line);
-		if (is_comment(line))
+		if (!(*line))
+			ERROR_MESSAGE("empty line");
+		PRINT_LINE(*line);
+		if (is_comment(*line))
 		{
-			ft_strdel(&line);
+			ft_strdel(line);
 			continue ;
 		}
-		if (ft_is_number(line) && ft_strlen(line))
+		if (ft_is_number(*line) && *line)
 		{
-			write_ants_qty(data, line);
+			write_ants_qty(data, *line);
 			return ;
 		}
-		else
-		{
-			ERROR_MSG("incorrect ants quantity value");
-			ft_strdel(&line);
-		}
+		ERROR_MESSAGE("incorrect ants quantity value");
 	}
-	check_file(data, line, i);
+	ERROR_MESSAGE("empty file");
 }
 
-static char	*read_rooms(t_data *data)
+static void	read_rooms(t_data *data, char **line)
 {
-	char	*line;
-	int		i;
-
-	i = 0;
-	while (get_next_line(FD, &line) > 0)
+	while (get_next_line(FD, line) > 0)
 	{
-		i++;
-		PRINT_LINE(line);
-		if (is_comment(line))
+		if (!(*line))
+			ERROR_MESSAGE("empty line");
+		PRINT_LINE(*line);
+		if (is_comment(*line))
 		{
-			ft_strdel(&line);
+			ft_strdel(line);
 			continue ;
 		}
-		else if (is_instruct(line))
-			exec_instr(data, line);
-		else if (is_room(line))
-			parse_room(data, line, 'c');
-		else if (is_link(data, line))
-			return (line);
+		else if (is_instruct(*line))
+			exec_instr(data, *line);
+		else if (is_room(*line))
+			parse_room(data, *line, 'c');
+		else if (is_link(data, *line))
+			return ;
 		else
-			ERROR_MSG("incorrect room parameters");
+			ERROR_MESSAGE("incorrect room parameters");
 	}
-	if (!i)
-		ERROR_MSG("incorrect room parameters");
-	return (NULL);
 }
 
-static void	build_adj_matrix(t_data *data, char *temp)
+static void	build_adj_matrix(t_data *data, char **line)
 {
 	size_t	room_qty;
-	char	*line;
 
 	room_qty = ft_lstlen(data->rooms);
 	data->adj = create_matrix(room_qty, room_qty);
-	parse_link(data, temp);
-	while (get_next_line(FD, &line) > 0)
+	parse_link(data, *line);
+	while (get_next_line(FD, line) > 0)
 	{
-		PRINT_LINE(line);
-		if (is_comment(line))
+		if (!(*line) && ft_printf("Warning: empty line\n"))
+			return ;
+		PRINT_LINE(*line);
+		if (is_comment(*line))
 		{
-			ft_strdel(&line);
+			ft_strdel(line);
 			continue ;
 		}
-		if (is_link(data, line))
-			parse_link(data, line);
-		else
-			ERROR_MSG("incorect link");
+		if (is_link(data, *line))
+			parse_link(data, *line);
+		else if (ft_printf("Warning: incorrect link <%s>\n", *line))
+			return ;
 	}
 }
 
@@ -115,15 +103,17 @@ static void	write_rooms_to_arr(t_data *data)
 
 void		read_data(t_data *data)
 {
-	char	*temp;
+	char	*line;
 
-	read_ant_qty(data);
-	temp = read_rooms(data);
-	if (!temp)
+	open("testing/farm0", O_RDONLY, 0);
+	line = NULL;
+	read_ant_qty(data, &line);
+	read_rooms(data, &line);
+	if (!line)
 		data->flags.e ? error(NULL, "there are no links between rooms") :
 						error(NULL, NULL);
 	check_status(data->rooms, data->flags.e);
-	build_adj_matrix(data, temp);
+	build_adj_matrix(data, &line);
 	ft_printf("\n");
 	write_rooms_to_arr(data);
 }

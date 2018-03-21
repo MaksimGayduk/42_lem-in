@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 12:00:43 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/20 09:55:11 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 13:23:47 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ void	check_uniqe_room(t_data *data, t_room room, char *line)
 	{
 		if (ft_strequ(room.name, ((t_room *)temp->content)->name))
 			ERROR_MSG("the room with such name is already exists");
-		if (room.x == (((t_room *)temp->content)->x))
-			ERROR_MSG("the room with such X coordinate is already exists");
-		if (room.y == (((t_room *)temp->content)->y))
-			ERROR_MSG("the room with such Y coordinate is already exists");
+		if (room.x == (((t_room *)temp->content)->x) &&
+			room.y == (((t_room *)temp->content)->y))
+			ERROR_MSG("the room with the same coordinates is already exists");
 		temp = temp->next;
 	}
 }

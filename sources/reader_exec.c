@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 08:27:54 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 13:33:19 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	exec_instr(t_data *data, char *line)
 {
 	if (ft_strequ(line, "##start"))
 	{
-		ft_strdel(&line);
+		if (line)
+			ft_strdel(&line);
 		get_next_line(FD, &line);
 		PRINT_LINE(line);
 		if (is_room(line))
@@ -26,7 +27,8 @@ void	exec_instr(t_data *data, char *line)
 	}
 	else if (ft_strequ(line, "##end"))
 	{
-		ft_strdel(&line);
+		if (line) 
+			ft_strdel(&line);
 		get_next_line(FD, &line);
 		PRINT_LINE(line);
 		if (is_room(line))
