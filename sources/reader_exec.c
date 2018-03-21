@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 13:33:19 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:22:25 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 's');
 		else
-			ERROR_MSG("incorrect room parameters");
+			ERROR_MESSAGE(line, "incorrect room parameters");
 	}
 	else if (ft_strequ(line, "##end"))
 	{
@@ -34,10 +34,10 @@ void	exec_instr(t_data *data, char *line)
 		if (is_room(line))
 			parse_room(data, line, 'e');
 		else
-			ERROR_MSG("incorrect room parameters");
+			ERROR_MESSAGE(line, "incorrect room parameters");
 	}
 	else
-		ERROR_MSG("incorrect instruction");
+		ERROR_MESSAGE(line, "incorrect instruction");
 }
 
 void	parse_room(t_data *data, char *line, char status)

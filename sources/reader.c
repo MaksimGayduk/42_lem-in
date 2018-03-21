@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 17:58:10 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:07:18 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	read_ant_qty(t_data *data, char **line)
 	while (get_next_line(FD, line) > 0)
 	{
 		if (!(*line))
-			ERROR_MESSAGE("empty line");
+			ERROR_MESSAGE(*line, "empty line");
 		PRINT_LINE(*line);
 		if (is_comment(*line))
 		{
@@ -29,9 +29,9 @@ static void	read_ant_qty(t_data *data, char **line)
 			write_ants_qty(data, *line);
 			return ;
 		}
-		ERROR_MESSAGE("incorrect ants quantity value");
+		ERROR_MESSAGE(*line, "incorrect ants quantity value");
 	}
-	ERROR_MESSAGE("empty file");
+	ERROR_MESSAGE(*line, "empty file");
 }
 
 static void	read_rooms(t_data *data, char **line)
@@ -39,7 +39,7 @@ static void	read_rooms(t_data *data, char **line)
 	while (get_next_line(FD, line) > 0)
 	{
 		if (!(*line))
-			ERROR_MESSAGE("empty line");
+			ERROR_MESSAGE(*line, "empty line");
 		PRINT_LINE(*line);
 		if (is_comment(*line))
 		{
@@ -53,7 +53,7 @@ static void	read_rooms(t_data *data, char **line)
 		else if (is_link(data, *line))
 			return ;
 		else
-			ERROR_MESSAGE("incorrect room parameters");
+			ERROR_MESSAGE(*line, "incorrect room parameters");
 	}
 }
 
@@ -110,8 +110,7 @@ void		read_data(t_data *data)
 	read_ant_qty(data, &line);
 	read_rooms(data, &line);
 	if (!line)
-		data->flags.e ? error(NULL, "there are no links between rooms") :
-						error(NULL, NULL);
+		ERROR_MESSAGE(line, "there are no links between rooms");
 	check_status(data->rooms, data->flags.e);
 	build_adj_matrix(data, &line);
 	ft_printf("\n");

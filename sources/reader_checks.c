@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 14:04:26 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:20:54 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ int	is_link(t_data *data, char *line)
 		return (1);
 	}
 	ft_clear_strarr(&arr);
-	ERROR_MSG("there is no room with such name");
+	ERROR_MESSAGE(line, "there is no room with such name");
 	return (0);
 }
