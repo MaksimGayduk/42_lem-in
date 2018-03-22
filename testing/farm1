@@ -1,15 +1,13 @@
-#palma
-#epta
-100
+10
 ##start
-zero 0 0
+start 0 2
 ##end
-one 1 1
-two 2 2
-#www
-three 3 3
-zero-two
-zero-three
-two-three
-three-one
-two-one
+end 4 2
+hall 1 1
+kitchen 3 1
+bathroom 2 3
+start-hall
+hall-kitchen
+start-bathroom
+bathroom-end
+kitchen-end

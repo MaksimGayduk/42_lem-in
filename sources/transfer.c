@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 08:52:23 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/22 08:48:51 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 11:51:44 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		make_step(t_data *data)
 			data->ants[i].path = data->ants[i].path->next;
 			data->room_arr[ROOM_IN_PATH(i)].visited = 1;
 			moved++;
-			ft_printf(GREEN "L%i-%s " RESET, data->ants[i].name,
+			ft_printf("L%i-%s ", data->ants[i].name,
 			data->room_arr[ROOM_IN_PATH(i)].name);
 		}
 		i++;
