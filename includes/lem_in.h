@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/22 08:44:46 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 09:16:27 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 # include "matrix.h"
 # include <inttypes.h>
 
-#include <fcntl.h>
-
-# define FD 3
+# define FD 0
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
