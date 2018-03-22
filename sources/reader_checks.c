@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:26:09 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 08:44:38 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	in_list_by_name(t_list *rooms, char *name)
 	return (0);
 }
 
-int	is_link(t_data *data, char *line)
+int	is_link(char *line)
 {
 	char	**arr;
 
@@ -80,13 +80,8 @@ int	is_link(t_data *data, char *line)
 	if (ft_word_count(line, '-') != 2)
 		return (0);
 	arr = ft_strsplit(line, '-');
-	if (in_list_by_name(data->rooms, arr[0]) &&
-		in_list_by_name(data->rooms, arr[1]))
-	{
-		ft_clear_strarr(&arr);
+	if (ft_len_strarr(arr) == 2)
 		return (1);
-	}
 	ft_clear_strarr(&arr);
-	ERROR_MSG(line, "there is no room with such name");
 	return (0);
 }

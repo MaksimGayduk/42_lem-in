@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:24:53 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:25:43 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 08:44:46 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include "matrix.h"
 # include <inttypes.h>
 
-# define FD 0
+#include <fcntl.h>
+
+# define FD 3
 # define EMPTY -42
 # define ROOM_IN_PATH(i) *((int *)data->ants[i].path->content)
 # define NEXT_ROOM_IN_PATH(i) *((int *)data->ants[i].path->next->content)
@@ -84,7 +86,7 @@ void			read_data(t_data *data);
 int				is_comment(char *line);
 int				is_instruct(char *line);
 int				is_room(char *line);
-int				is_link(t_data *data, char *line);
+int				is_link(char *line);
 void			parse_room(t_data *data, char *line, char status);
 void			parse_link(t_data *data, char *line);
 void			exec_instr(t_data *data, char *line);

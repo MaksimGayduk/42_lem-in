@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:25:00 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 08:43:39 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_instr(t_data *data, char *line)
 	}
 	else if (ft_strequ(line, "##end"))
 	{
-		if (line) 
+		if (line)
 			ft_strdel(&line);
 		get_next_line(FD, &line);
 		PRINT_LINE(line);
@@ -74,7 +74,16 @@ void	parse_link(t_data *data, char *line)
 	i = get_index_by_name(data->rooms, arr[0]);
 	j = get_index_by_name(data->rooms, arr[1]);
 	if (ft_strequ(arr[0], arr[1]))
-		ERROR_MSG(NULL, "Self connected room");
+	{
+		ft_strdel(&line);
+		ft_clear_strarr(&arr);
+		ERROR_MSG(NULL, "self connected room");
+	}
+	if (i == -1 || j == -1)
+	{
+		ft_clear_strarr(&arr);
+		ERROR_MSG(line, "there is no room with such name");
+	}
 	data->adj.values[i][j] = 1;
 	data->adj.values[j][i] = 1;
 	ft_strdel(&line);
@@ -107,4 +116,3 @@ void	check_status(t_data *data)
 	if (end > 1)
 		ERROR_MSG(NULL, "there are more than one END room");
 }
-

@@ -6,7 +6,7 @@
 /*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:57:19 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:25:50 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/22 08:47:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	read_rooms(t_data *data, char **line)
 			exec_instr(data, *line);
 		else if (is_room(*line))
 			parse_room(data, *line, 'c');
-		else if (is_link(data, *line))
+		else if (is_link(*line))
 			return ;
 		else
 			ERROR_MSG(*line, "incorrect room parameters");
@@ -74,7 +74,7 @@ static void	build_adj_matrix(t_data *data, char **line)
 			ft_strdel(line);
 			continue ;
 		}
-		if (is_link(data, *line))
+		if (is_link(*line))
 			parse_link(data, *line);
 		else
 		{
@@ -108,9 +108,13 @@ void		read_data(t_data *data)
 {
 	char	*line;
 
+	open("testing/farm0", O_RDONLY, 0);
+
 	line = NULL;
 	read_ant_qty(data, &line);
 	read_rooms(data, &line);
+	if (!ft_lstlen(data->rooms))
+		ERROR_MSG(NULL, "rooms weren`t specified");
 	if (!line)
 		ERROR_MSG(line, "there are no links between rooms");
 	check_status(data);
