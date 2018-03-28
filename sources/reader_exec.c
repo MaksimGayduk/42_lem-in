@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 09:30:08 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/22 08:43:39 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/28 13:30:12 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exec_instr(t_data *data, char *line)
 		if (line)
 			ft_strdel(&line);
 		get_next_line(FD, &line);
-		PRINT_LINE(line);
+		line ? PRINT_LINE(line) : ERROR_MSG(line, "empty line");
 		if (is_room(line))
 			parse_room(data, line, 's');
 		else
@@ -30,7 +30,7 @@ void	exec_instr(t_data *data, char *line)
 		if (line)
 			ft_strdel(&line);
 		get_next_line(FD, &line);
-		PRINT_LINE(line);
+		line ? PRINT_LINE(line) : ERROR_MSG(line, "empty line");
 		if (is_room(line))
 			parse_room(data, line, 'e');
 		else
@@ -75,9 +75,8 @@ void	parse_link(t_data *data, char *line)
 	j = get_index_by_name(data->rooms, arr[1]);
 	if (ft_strequ(arr[0], arr[1]))
 	{
-		ft_strdel(&line);
 		ft_clear_strarr(&arr);
-		ERROR_MSG(NULL, "self connected room");
+		ERROR_MSG(line, "self connected room");
 	}
 	if (i == -1 || j == -1)
 	{

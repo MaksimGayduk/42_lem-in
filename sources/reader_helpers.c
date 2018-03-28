@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 12:00:43 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/21 19:25:24 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/28 11:58:31 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	write_ants_qty(t_data *data, char *line)
 	if (data->ant_qty <= 0)
 		ERROR_MSG(line, "non-positive value");
 	if (data->ant_qty > 100000)
-		ERROR_MSG(line, "Dude, it`s too much ants :) [limit 100 000]");
+		ERROR_MSG(line, "Too much ants. [limit 100 000]");
 	ft_strdel(&line);
 }
 

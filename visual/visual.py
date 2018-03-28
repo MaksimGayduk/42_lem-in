@@ -17,6 +17,9 @@ def read_data():
 
 def main():
 	rooms, links = read_data()
+	if (len(rooms) == 0):
+		print ("Error")
+		exit (1)
 	dr.draw_graph(rooms, links)
 
 if __name__ == "__main__":

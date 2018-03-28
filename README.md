@@ -39,4 +39,12 @@ L3-1</pre></code>
 
 Where each line is one time step.  
 L1-3 means: <code>ant number 1 goes to the room number 3</code>.  
-Only one ant can be at the room in the same time. 
+Only one ant can be at the room in the same time.
+
+To visualize graph:
+./run.sh [map file]
+
+_python2.x and matplotlib required_
+
+Example:
+![fdf](img/00_lem-in.png)

@@ -6,7 +6,7 @@ if [ $# -ne 1 ]; then
 fi
 
 if [ ! -e $1 ]; then
-	echo "The file is not exist"
+	echo "The file doesn't exist"
 	exit 1
 fi
 
