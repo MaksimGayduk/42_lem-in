@@ -10,7 +10,7 @@ if [ ! -e $1 ]; then
 	exit 1
 fi
 
-if ./lem-in -e < $1 | tee temp; then
+if ./lem-in -e -p < $1 | tee temp; then
 	cat temp | ./visual/visual.py
 fi
 

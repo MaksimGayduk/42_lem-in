@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgayduk <maksim.gayduk@gmail.com>          +#+  +:+       +#+        */
+/*   By: mgayduk <mgayduk@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 18:29:37 by mgayduk           #+#    #+#             */
-/*   Updated: 2018/03/22 08:44:38 by mgayduk          ###   ########.fr       */
+/*   Updated: 2018/03/28 15:12:43 by mgayduk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	is_link(char *line)
 		return (0);
 	arr = ft_strsplit(line, '-');
 	if (ft_len_strarr(arr) == 2)
+	{
+		ft_clear_strarr(&arr);
 		return (1);
+	}
 	ft_clear_strarr(&arr);
 	return (0);
 }
