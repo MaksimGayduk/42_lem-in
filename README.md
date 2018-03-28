@@ -28,7 +28,7 @@ The ants farm describes in input file like below:
 7-4       |
 6-5      -</pre></code>
 
-### usage: ./lem-in < file.map
+### usage: ./lem-in < [map file]
 
 Output should be something like this: 
 <pre><code>L1-2
