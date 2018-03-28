@@ -2,6 +2,7 @@
 import sys
 import re
 import drawer as dr
+from classes import Room
 
 
 
@@ -9,6 +10,7 @@ def read_data():
 	rooms = {}
 	links = []
 	moves = []
+	Rooms = []
 
 	for line in sys.stdin:
 		line = line.rstrip('\n')
@@ -33,6 +35,7 @@ def read_data():
 		elif (re.match('\w+ \d+ \d+', line)):
 			name, x, y = line.split(' ')
 			rooms[name] = [int(x), int(y), 'c']
+			Rooms.append(Room(name, int(x), int(y), 'c'))
 		
 		#Link between rooms (smth like A-B)
 		elif (re.match('^(?!L)(\w|\d)+-(\w|\d)+$', line)):
@@ -42,6 +45,9 @@ def read_data():
 		elif (re.match('^L+', line)):
 			moves.append(line)
 		print (line)
+
+	for room in Rooms:
+		print (room.name)
 	return(ants, rooms, links, moves)
 
 def main():
@@ -49,7 +55,7 @@ def main():
 	# if (len(rooms) == 0):
 	# 	print ("Error")
 	# 	exit (1)
-	# dr.draw_graph(rooms, links)
+	#dr.draw_graph(rooms, links)
 	print (ants)
 	print (rooms)
 	print (links)
