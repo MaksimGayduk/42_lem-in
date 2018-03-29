@@ -2,64 +2,49 @@
 import sys
 import re
 import drawer as dr
-from classes import Room
+from classes import Room, Farm
 
 
 
 def read_data():
-	rooms = {}
-	links = []
+	
+	farm = Farm()
 	moves = []
-	Rooms = []
-
 	for line in sys.stdin:
 		line = line.rstrip('\n')
-
+		#Read number of ants
 		if (re.match('^\d+$', line)):
-			ants = int(line)
-		#Execute ##start instruction
-		elif (line == "##start"):
+			farm.ants = int(line)
+		#Execute ##start/##end instruction
+		elif (line == "##start" or line == "##end"):
+			temp = line.strip('#')
 			line = sys.stdin.next().strip('\n')
-			name, x, y = line.split(' ')
-			rooms[name] = [int(x), int(y), 's']
+			farm.add_room(line, temp)
 			continue
-		
-		#Execute ##end instruction
-		elif (line == "##end"):
-			line = sys.stdin.next().strip('\n')
-			name, x, y = line.split(' ')
-			rooms[name] = [int(x), int(y), 'e']
-			continue
-
-		#Room parameter (smth like A 2 3)
+		#Room parameter (smth like 'A 2 3')
 		elif (re.match('\w+ \d+ \d+', line)):
-			name, x, y = line.split(' ')
-			rooms[name] = [int(x), int(y), 'c']
-			Rooms.append(Room(name, int(x), int(y), 'c'))
-		
-		#Link between rooms (smth like A-B)
+			farm.add_room(line, "common")
+		#Link between rooms (smth like 'A-B')
 		elif (re.match('^(?!L)(\w|\d)+-(\w|\d)+$', line)):
-			temp = line.split('-')
-			links.append((temp[0], temp[1]))
-
+			farm.add_link(line)
+		#Moves of ants (smth like 'L3-B')
 		elif (re.match('^L+', line)):
-			moves.append(line)
-		print (line)
-
-	for room in Rooms:
-		print (room.name)
-	return(ants, rooms, links, moves)
+			moves.append(line.strip())
+	return(farm, moves)
 
 def main():
-	ants, rooms, links, moves = read_data()
+	farm, moves = read_data()
 	# if (len(rooms) == 0):
 	# 	print ("Error")
 	# 	exit (1)
 	#dr.draw_graph(rooms, links)
-	print (ants)
-	print (rooms)
-	print (links)
+	print (farm.ants)
+	print(farm.room_index)
+	for room in farm.rooms:
+		print ("name: {}\nx: {}\ny: {}\n".format(room.name, room.x, room.y))
+	print (farm.links)
 	print (moves)
+	print(farm.start_room, farm.end_room)
 
 if __name__ == "__main__":
 	main()
