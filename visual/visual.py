@@ -4,8 +4,6 @@ import re
 import drawer
 from classes import Ant, Room, Farm
 
-
-
 def read_data():
 	
 	farm = Farm()
@@ -32,23 +30,21 @@ def read_data():
 			moves.append(line.strip())
 	return(farm, moves)
 
+def check_interval(interval):
+	try:
+		interval = int(interval)
+	except:
+		print ("Error: invalid interval value")
+		exit (1)
+	if (interval <= 0):
+		print ("Error: invalid interval value")
+		exit (1)
+
 def main():
 	farm, moves = read_data()
-	# if (len(rooms) == 0):
-	# 	print ("Error")
-	# 	exit (1)
+	interval = sys.argv[1]
+	check_interval(interval)
 	farm.create_ants()
-	drawer.draw_graph(farm, moves)
-	print (farm.ants)
-	print(farm.room_index)
-	for room in farm.rooms:
-		print ("name: {}\nx: {}\ny: {}\n".format(room.name, room.x, room.y))
-	print (farm.links)
-	print (moves)
-	print(farm.start_room, farm.end_room)
-
-	for a in farm.ants:
-		print ("name: {}\nx: {}\ny: {}\n".format(a.name, a.x, a.y))
-
+	drawer.draw_graph(farm, moves, int(sys.argv[1]))
 if __name__ == "__main__":
 	main()

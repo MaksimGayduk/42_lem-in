@@ -42,7 +42,7 @@ L1-3 means: <code>ant number 1 goes to the room number 3</code>.
 Only one ant can be at the room in the same time.
 
 To visualize graph:
-./run.sh [map file]
+./run.sh [map file] [interval in ms]
 
 _python2.x and matplotlib required_
 

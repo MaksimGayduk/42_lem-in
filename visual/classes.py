@@ -46,12 +46,12 @@ class Farm:
                         self.rooms[self.start_room].y)
             self.ants.append(ant)
     
-    def move_ants(moves):
+    def move_ants(self, moves):
         moves = moves.split(' ')
         for move in moves:
             move = move.strip('L')
             move = move.split('-')
             i = int(move[0]) - 1
             room_name = move[1]
-            self.ants[i].x, self.ants[i].y = get_xy_by_name(room_name) 
+            self.ants[i].x, self.ants[i].y = self.get_xy_by_name(room_name) 
 

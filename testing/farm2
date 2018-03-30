@@ -1,4 +1,4 @@
-10
+20
 ##start
 A 0 0
 B 0 3
@@ -13,7 +13,6 @@ A-B
 A-C
 B-D
 B-E
-C-E
 C-G
 D-F
 E-F

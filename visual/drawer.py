@@ -29,38 +29,40 @@ def draw_links(farm):
 
 
 def draw_ants(farm):
-	for ant in reversed(farm.ants):
-		plt.scatter(ant.x, ant.y, s=5000, zorder=3, c='red')
+	colors = ['#8fce6b', '#e7ed36', '#eaa52e', '#ea472e', '#2eeae4', '#962eea']
+	i = 0
+	l = len(colors)
+	for ant in farm.ants:
+		plt.scatter(ant.x, ant.y, s=5000, zorder=3, c=colors[i % l])
 		draw_annotation(ant.name, ant.x, ant.y, vpos=0, bcolor='white', al=1, z=0)
+		i += 1
 
-def init(farm):
-	draw_rooms(farm)
-	draw_links(farm)
-	draw_ants(farm)
+def init():
+	draw_rooms(gfarm)
+	draw_links(gfarm)
+	draw_ants(gfarm)
 
 def animate(moves):
-	farm.move_ants(moves)
-	plt.cla()
-	draw_rooms(farm)
-	draw_links(farm)
-	draw_ants(farm)
+	gfarm.move_ants(moves)
+	plt.clf()
+	plt.grid(True, zorder=0)
+	f = plt.gcf()
+	f.text(0.13, 0.95, moves, size='large',
+        bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
+	draw_rooms(gfarm)
+	draw_links(gfarm)
+	draw_ants(gfarm)
 
-def draw_graph(farm, moves):
+
+def draw_graph(farm, moves, interval):
+	global gfarm
+	gfarm = farm
 	fig, ax = plt.subplots(figsize=(15, 10))
 	fig.canvas.set_window_title('lem-in mgayduk')
 	ax.grid(True, zorder=0)
+	init()
 
-	ax.set_xlabel('$x$', fontsize=20)
-	ax.set_ylabel('$y$', fontsize=20)
-	init(farm)
-
-	anim = animation.FuncAnimation(fig, animate, moves, init_func=init,
-									blit=False, repeat=False, interval=100)
+	anim = animation.FuncAnimation(fig, animate, frames=moves, init_func=init,
+									blit=False, repeat=False, interval=interval)
 
 	plt.show()
-
-
-if __name__ == "__main__":
-	rooms = {'start': [0, 2], 'bathroom': [2, 3], 'end': [4, 2], 'hall': [1, 1], 'kitchen': [3, 1]}
-	links = [('zero', 'two'), ('zero', 'three'), ('two', 'three'), ('three', 'one'), ('two', 'one')]
-	draw_graph(rooms, links)
