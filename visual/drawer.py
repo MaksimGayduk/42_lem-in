@@ -53,7 +53,6 @@ def animate(moves):
 	draw_links(gfarm)
 	draw_ants(gfarm)
 
-
 def draw_graph(farm, moves, interval):
 	global gfarm
 	gfarm = farm
