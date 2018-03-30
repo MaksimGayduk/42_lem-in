@@ -29,12 +29,12 @@ def draw_links(farm):
 
 
 def draw_ants(farm):
-	colors = ['#8fce6b', '#e7ed36', '#eaa52e', '#ea472e', '#2eeae4', '#962eea']
+	colors = ['#8fce6b', '#e529e2', '#e7ed36', '#eaa52e', '#ea472e', '#29b0e5', '#962eea']
 	i = 0
 	l = len(colors)
 	for ant in farm.ants:
 		plt.scatter(ant.x, ant.y, s=5000, zorder=3, c=colors[i % l])
-		draw_annotation(ant.name, ant.x, ant.y, vpos=0, bcolor='white', al=1, z=0)
+		draw_annotation(ant.name, ant.x, ant.y, vpos=0, bcolor='white', al=1, z=10)
 		i += 1
 
 def init():
@@ -42,18 +42,16 @@ def init():
 	draw_links(gfarm)
 	draw_ants(gfarm)
 
-def animate(moves):
-	gfarm.move_ants(moves)
+def animate(steps):
+	gfarm.move_ants(steps)
 	plt.clf()
 	plt.grid(True, zorder=0)
 	f = plt.gcf()
-	f.text(0.13, 0.95, moves, size='large',
-        bbox={'facecolor':'red', 'alpha':0.5, 'pad':10})
 	draw_rooms(gfarm)
 	draw_links(gfarm)
 	draw_ants(gfarm)
 
-def draw_graph(farm, moves, interval):
+def draw_graph(farm, steps, interval):
 	global gfarm
 	gfarm = farm
 	fig, ax = plt.subplots(figsize=(15, 10))
@@ -61,7 +59,7 @@ def draw_graph(farm, moves, interval):
 	ax.grid(True, zorder=0)
 	init()
 
-	anim = animation.FuncAnimation(fig, animate, frames=moves, init_func=init,
+	anim = animation.FuncAnimation(fig, animate, frames=steps, init_func=init,
 									blit=False, repeat=False, interval=interval)
 
 	plt.show()

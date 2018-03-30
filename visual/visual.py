@@ -2,6 +2,7 @@
 import sys
 import re
 import drawer
+import copy
 from classes import Ant, Room, Farm
 
 def read_data():
@@ -45,6 +46,11 @@ def main():
 	interval = sys.argv[1]
 	check_interval(interval)
 	farm.create_ants()
-	drawer.draw_graph(farm, moves, int(sys.argv[1]))
+	farm.ants_copy = copy.deepcopy(farm.ants)
+	steps = []
+	for move in moves:	
+		steps.extend(farm.compute_steps(move))
+	drawer.draw_graph(farm, steps, interval)
+	
 if __name__ == "__main__":
 	main()

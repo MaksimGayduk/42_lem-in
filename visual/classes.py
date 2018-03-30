@@ -13,6 +13,7 @@ class Farm:
     def __init__(self):
         self.ant_num = 0
         self.ants = []
+        self.ants_copy = []
         self.rooms = []
         self.start_room = None
         self.end_room = None
@@ -46,12 +47,41 @@ class Farm:
                         self.rooms[self.start_room].y)
             self.ants.append(ant)
     
-    def move_ants(self, moves):
-        moves = moves.split(' ')
-        for move in moves:
-            move = move.strip('L')
-            move = move.split('-')
-            i = int(move[0]) - 1
-            room_name = move[1]
-            self.ants[i].x, self.ants[i].y = self.get_xy_by_name(room_name) 
+    def move_ants(self, steps):
+        for step in steps:
+            i = step[0]
+            x = step[1]
+            y = step[2]
+            self.ants[i].x = x
+            self.ants[i].y = y
+    
+    def __get_substeps(self, move):
+        move = move.strip('L')
+        move = move.split('-')
+        i = int(move[0]) - 1
+        curr_room = (self.ants_copy[i].x, self.ants_copy[i].y)
+        next_room = self.get_xy_by_name(move[1])
+        temp = []
+        s = 10
+        dx = (next_room[0] - curr_room[0]) / float(s)
+        dy = (next_room[1] - curr_room[1]) / float(s)
+        for x in range(s + 1):
+            step = []
+            step.append(i)
+            step.append(curr_room[0] + dx * x)
+            step.append(curr_room[1] + dy * x)
+            temp.append(step)
+        self.ants_copy[i].x, self.ants_copy[i].y = next_room
+        return (temp)
 
+    def compute_steps(self, moves):
+        steps = []
+        moves = moves.split(' ')
+        steps = [self.__get_substeps(move) for move in moves]
+        res = []
+        for i in range(len(steps[0])):
+            temp = []
+            for step in steps:
+                temp.append(step[i])
+            res.append(tuple(temp))
+        return (res)
