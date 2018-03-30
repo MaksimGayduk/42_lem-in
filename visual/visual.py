@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import sys
 import re
-import drawer as dr
-from classes import Room, Farm
+import drawer
+from classes import Ant, Room, Farm
 
 
 
@@ -14,7 +14,7 @@ def read_data():
 		line = line.rstrip('\n')
 		#Read number of ants
 		if (re.match('^\d+$', line)):
-			farm.ants = int(line)
+			farm.ant_num = int(line)
 		#Execute ##start/##end instruction
 		elif (line == "##start" or line == "##end"):
 			temp = line.strip('#')
@@ -37,7 +37,8 @@ def main():
 	# if (len(rooms) == 0):
 	# 	print ("Error")
 	# 	exit (1)
-	#dr.draw_graph(rooms, links)
+	farm.create_ants()
+	drawer.draw_graph(farm, moves)
 	print (farm.ants)
 	print(farm.room_index)
 	for room in farm.rooms:
@@ -45,6 +46,9 @@ def main():
 	print (farm.links)
 	print (moves)
 	print(farm.start_room, farm.end_room)
+
+	for a in farm.ants:
+		print ("name: {}\nx: {}\ny: {}\n".format(a.name, a.x, a.y))
 
 if __name__ == "__main__":
 	main()

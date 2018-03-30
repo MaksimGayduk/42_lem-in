@@ -11,7 +11,7 @@ if [ ! -e $1 ]; then
 fi
 
 if ./lem-in -e -p < $1 | tee temp; then
-	cat temp | ./visual/visual.py
+	./visual/visual.py < temp
 fi
 
 rm temp
