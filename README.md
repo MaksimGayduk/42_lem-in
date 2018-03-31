@@ -46,5 +46,10 @@ To visualize graph:
 
 _python2.x and matplotlib required_
 
-Example:
-![fdf](img/00_lem-in.png)
+Examples:
+
+./run.sh testing/farm1 40
+![fdf](img/01_lem-in.png)
+
+./run.sh testing/farm2 40
+![fdf](img/02_lem-in.png)

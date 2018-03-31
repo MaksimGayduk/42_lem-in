@@ -1,13 +1,26 @@
-10
+20
 ##start
-start 0 2
+A 0 0
+B 5 20
+C 5 -20
+D 10 30
+E 10 10
+F 10 -10
+G 10 -30
+H 15 20
+I 15 -20
 ##end
-end 4 2
-hall 1 1
-kitchen 3 1
-bathroom 2 3
-start-hall
-hall-kitchen
-start-bathroom
-bathroom-end
-kitchen-end
+J 20 0
+A-B
+A-C
+B-D
+B-E
+C-F
+C-G
+D-H
+E-H
+F-I
+G-I
+H-J
+I-J
+

@@ -21,7 +21,7 @@ def read_data():
 			farm.add_room(line, temp)
 			continue
 		#Room parameter (smth like 'A 2 3')
-		elif (re.match('\w+ \d+ \d+', line)):
+		elif (re.match('\w+ -*\d+ -*\d+', line)):
 			farm.add_room(line, "common")
 		#Link between rooms (smth like 'A-B')
 		elif (re.match('^(?!L)(\w|\d)+-(\w|\d)+$', line)):
